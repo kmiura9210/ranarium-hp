@@ -1,0 +1,468 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const services = [
+  {
+    id: 'ai',
+    num: '01',
+    title: 'AIコンサルティング',
+    subtitle: 'AI Strategy & Implementation',
+    desc: 'AI活用の戦略策定から実装・運用まで、一気通貫でご支援します。「どこにAIを使えばいいか分からない」という段階からでも丁寧にサポートします。',
+    features: [
+      'AI活用戦略の立案・ロードマップ策定',
+      'PoC（概念実証）の設計・実施',
+      '機械学習・LLMモデルの選定・開発',
+      '既存システムへのAI統合',
+      '運用体制の構築・人材育成支援',
+    ],
+    color: 'accent',
+    icon: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" stroke="var(--color-accent)" stroke-width="1.5"/><path d="M15 33 L20 18 L24 27 L28 21 L33 33" stroke="var(--color-accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="24" cy="12" r="2" fill="var(--color-accent)"/></svg>`,
+  },
+  {
+    id: 'dev',
+    num: '02',
+    title: 'システム開発',
+    subtitle: 'Custom System Development',
+    desc: 'ビジネス課題を解決するカスタムシステム・Webアプリケーションを開発します。スクラム開発で短いサイクルにフィードバックを反映し、価値を素早く届けます。',
+    features: [
+      'Webアプリケーション開発（フルスタック）',
+      '業務システム・社内ツール開発',
+      'API設計・マイクロサービス開発',
+      'クラウドインフラ（AWS/GCP/Azure）構築',
+      '既存システムのリプレイス・モダナイズ',
+    ],
+    color: 'water',
+    icon: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="6" y="6" width="36" height="36" rx="8" stroke="var(--color-water)" stroke-width="1.5"/><path d="M16 22 L20 26 L16 30" stroke="var(--color-water)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 30 H32" stroke="var(--color-water)" stroke-width="2" stroke-linecap="round"/></svg>`,
+  },
+  {
+    id: 'dx',
+    num: '03',
+    title: 'DXソリューション',
+    subtitle: 'Digital Transformation',
+    desc: '業務プロセスのデジタル化から組織の変革まで、現場目線でDXを伴走支援します。単なるツール導入ではなく、ビジネス変革を実現します。',
+    features: [
+      'DX戦略立案・推進ロードマップ策定',
+      '業務プロセスの可視化・ボトルネック特定',
+      'ノーコード・ローコードツールの導入支援',
+      'クラウド移行（クラウドジャーニー）',
+      '変革管理・チェンジマネジメント支援',
+    ],
+    color: 'accent',
+    icon: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M24 8 L40 18 V30 L24 40 L8 30 V18 Z" stroke="var(--color-accent)" stroke-width="1.5"/><circle cx="24" cy="24" r="8" stroke="var(--color-accent)" stroke-width="1.5"/><path d="M24 14 V18 M24 30 V34 M14 24 H18 M30 24 H34" stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+  },
+  {
+    id: 'data',
+    num: '04',
+    title: 'データ分析',
+    subtitle: 'Data Analytics & BI',
+    desc: 'データの収集・蓄積・分析・可視化まで。散在するデータを統合し、経営判断に使えるインサイトを提供します。データドリブン経営への転換を支援します。',
+    features: [
+      'データ基盤（データウェアハウス）設計・構築',
+      'BIツール（Tableau/Looker等）導入・活用支援',
+      '予測分析・需要予測モデルの構築',
+      'リアルタイムダッシュボード開発',
+      'データガバナンス体制の整備',
+    ],
+    color: 'water',
+    icon: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="4" y="4" width="18" height="18" rx="4" stroke="var(--color-water)" stroke-width="1.5"/><rect x="26" y="4" width="18" height="18" rx="4" stroke="var(--color-water)" stroke-width="1.5"/><rect x="4" y="26" width="18" height="18" rx="4" stroke="var(--color-water)" stroke-width="1.5"/><rect x="26" y="26" width="18" height="18" rx="4" stroke="var(--color-water)" stroke-width="1.5"/></svg>`,
+  },
+];
+---
+
+<Layout title="サービス" description="株式会社RANARIUMのサービス一覧。AIコンサルティング、システム開発、DXソリューション、データ分析を提供しています。">
+
+  <!-- Page Hero -->
+  <section class="page-hero services-hero">
+    <div class="hero-bubbles" aria-hidden="true">
+      <div class="bubble" style="width:16px;height:16px;left:8%;--duration:9s;--delay:0s;--sway:14px;"></div>
+      <div class="bubble" style="width:10px;height:10px;left:40%;--duration:12s;--delay:1.5s;--sway:-10px;"></div>
+      <div class="bubble" style="width:20px;height:20px;left:75%;--duration:10s;--delay:3s;--sway:16px;"></div>
+    </div>
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="/">ホーム</a><span>/</span><span>サービス</span>
+      </nav>
+      <div class="page-hero-inner animate-fade-in-up">
+        <p class="section-label">Services</p>
+        <h1 class="page-title">サービス</h1>
+        <p class="page-subtitle">
+          AIからシステム開発・DXまで。お客様のビジネス課題に合わせて<br/>
+          最適なソリューションを柔軟に組み合わせてご提供します。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service List -->
+  {services.map((s, i) => (
+    <section id={s.id} class={`section service-detail ${i % 2 !== 0 ? 'alt-bg' : ''}`}>
+      <div class="container service-detail-inner">
+        <div class={`service-detail-content ${i % 2 !== 0 ? 'reversed' : ''}`}>
+
+          <div class="service-text" data-animate>
+            <div class="service-tag-row">
+              <span class="service-num-badge">{s.num}</span>
+              <span class="tag">{s.subtitle}</span>
+            </div>
+            <h2 class="service-detail-title">{s.title}</h2>
+            <p class="service-detail-desc">{s.desc}</p>
+
+            <ul class="service-features">
+              {s.features.map(f => (
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <circle cx="8" cy="8" r="7" stroke="var(--color-accent)" stroke-width="1.2"/>
+                    <path d="M5 8l2 2 4-4" stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  {f}
+                </li>
+              ))}
+            </ul>
+
+            <a href="/contact" class="btn-primary service-cta">
+              このサービスについて相談する
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+
+          <div class="service-visual glass-card" data-animate style={`animation-delay: 0.15s`}>
+            <div class="service-visual-inner">
+              <div class="service-icon-large" set:html={s.icon}></div>
+              <div class="service-visual-num">{s.num}</div>
+              <h3 class="service-visual-title">{s.title}</h3>
+              <div class="service-visual-dots" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- Process -->
+  <section class="section process-section">
+    <div class="container">
+      <div class="process-header" data-animate>
+        <p class="section-label">Process</p>
+        <h2 class="section-title">ご支援の流れ</h2>
+      </div>
+
+      <div class="process-steps">
+        {[
+          { num: '01', title: 'ヒアリング',     desc: '課題・目標・現状を丁寧にお伺いします。初回相談は無料です。' },
+          { num: '02', title: '提案・見積り',   desc: '課題に合わせた最適なプランと費用感をご提案します。' },
+          { num: '03', title: '契約・キックオフ', desc: 'ご契約後、チームを編成しプロジェクトを開始します。' },
+          { num: '04', title: '開発・実施',     desc: '定期的な進捗共有を行いながら、柔軟に進めます。' },
+          { num: '05', title: 'リリース・運用', desc: 'リリース後も継続してサポート・改善を行います。' },
+        ].map((step, i) => (
+          <div class="process-step" data-animate style={`animation-delay: ${i * 0.1}s`}>
+            <div class="process-circle">
+              <span>{step.num}</span>
+            </div>
+            {i < 4 && <div class="process-arrow" aria-hidden="true"></div>}
+            <div class="process-info">
+              <h3 class="process-title">{step.title}</h3>
+              <p class="process-desc">{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section cta-mini">
+    <div class="container cta-mini-inner" data-animate>
+      <p>まずはお気軽にご相談ください</p>
+      <a href="/contact" class="btn-primary">
+        無料相談・お問い合わせ
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .page-hero {
+    padding: 140px 0 80px;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(ellipse 60% 50% at 70% 50%, rgba(0,200,150,0.06) 0%, transparent 70%), var(--color-bg);
+  }
+
+  .hero-bubbles { position: absolute; inset: 0; pointer-events: none; }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82rem;
+    color: var(--color-ink-muted);
+    margin-bottom: 32px;
+  }
+
+  .breadcrumb a { color: var(--color-ink-muted); text-decoration: none; transition: color 0.2s; }
+  .breadcrumb a:hover { color: var(--color-accent-deep); }
+
+  .page-title {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    margin-bottom: 20px;
+  }
+
+  .page-subtitle {
+    font-size: 1rem;
+    color: var(--color-ink-soft);
+    line-height: 1.85;
+  }
+
+  .section-title {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 800;
+    margin-bottom: 16px;
+  }
+
+  .alt-bg { background: var(--color-surface); }
+
+  /* Service detail */
+  .service-detail-inner { max-width: 1100px; margin: 0 auto; }
+
+  .service-detail-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .service-detail-content.reversed .service-text { order: 2; }
+  .service-detail-content.reversed .service-visual { order: 1; }
+
+  .service-tag-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .service-num-badge {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    letter-spacing: 0.1em;
+  }
+
+  .service-detail-title {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 800;
+    margin-bottom: 20px;
+    line-height: 1.25;
+  }
+
+  .service-detail-desc {
+    font-size: 0.97rem;
+    color: var(--color-ink-soft);
+    line-height: 1.85;
+    margin-bottom: 32px;
+  }
+
+  .service-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 36px;
+  }
+
+  .service-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 0.92rem;
+    color: var(--color-ink-soft);
+    line-height: 1.6;
+  }
+
+  .service-features li svg { flex-shrink: 0; margin-top: 2px; }
+
+  .service-cta { display: inline-flex; }
+
+  /* Service visual card */
+  .service-visual {
+    padding: 0;
+    overflow: hidden;
+    min-height: 320px;
+    display: flex;
+    align-items: stretch;
+  }
+
+  .service-visual-inner {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 48px 32px;
+    background: linear-gradient(135deg, rgba(0,200,150,0.04), rgba(34,211,238,0.06));
+    position: relative;
+    text-align: center;
+  }
+
+  .service-icon-large { width: 48px; height: 48px; }
+
+  .service-visual-num {
+    font-family: var(--font-display);
+    font-size: 5rem;
+    font-weight: 800;
+    color: rgba(0,200,150,0.08);
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .service-visual-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+
+  .service-visual-dots {
+    display: flex;
+    gap: 8px;
+  }
+
+  .service-visual-dots span {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-border);
+  }
+
+  .service-visual-dots span:first-child { background: var(--color-accent); opacity: 0.7; }
+  .service-visual-dots span:nth-child(2) { background: var(--color-water); opacity: 0.5; }
+
+  /* Process */
+  .process-section { background: var(--color-surface); }
+  .process-header { margin-bottom: 48px; }
+
+  .process-steps {
+    display: flex;
+    gap: 0;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  .process-step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+  }
+
+  .process-circle {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-accent), #00B8A9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 4px 16px rgba(0,200,150,0.3);
+  }
+
+  .process-circle span {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: white;
+    letter-spacing: 0.05em;
+  }
+
+  .process-arrow {
+    position: absolute;
+    top: 28px;
+    right: -8px;
+    width: calc(100% - 32px);
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-accent), var(--color-border));
+    z-index: 0;
+    transform: translateX(36px);
+  }
+
+  .process-info { padding: 0 16px; }
+
+  .process-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .process-desc {
+    font-size: 0.82rem;
+    color: var(--color-ink-soft);
+    line-height: 1.7;
+  }
+
+  /* CTA mini */
+  .cta-mini { background: var(--color-bg); }
+
+  .cta-mini-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 40px 48px;
+    background: linear-gradient(135deg, var(--color-surface), var(--color-surface-2));
+    border-radius: 24px;
+    border: 1px solid var(--color-border);
+  }
+
+  .cta-mini-inner p {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  @media (max-width: 900px) {
+    .service-detail-content {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .service-detail-content.reversed .service-text  { order: 1; }
+    .service-detail-content.reversed .service-visual { order: 2; }
+
+    .process-steps {
+      flex-direction: column;
+      gap: 24px;
+      align-items: stretch;
+    }
+    .process-step { flex-direction: row; text-align: left; gap: 20px; }
+    .process-circle { flex-shrink: 0; margin-bottom: 0; }
+    .process-arrow { display: none; }
+  }
+
+  @media (max-width: 640px) {
+    .cta-mini-inner {
+      flex-direction: column;
+      text-align: center;
+      padding: 32px 24px;
+    }
+  }
+</style>

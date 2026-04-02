@@ -1,0 +1,274 @@
+---
+const nav = [
+  { label: 'サービス',   href: '/services' },
+  { label: '会社概要',   href: '/about'    },
+  { label: 'お知らせ',   href: '/news'     },
+  { label: 'お問い合わせ', href: '/contact' },
+];
+
+const pathname = Astro.url.pathname;
+---
+
+<header id="site-header">
+  <div class="container header-inner">
+    <!-- Logo -->
+    <a href="/" class="logo" aria-label="株式会社RANARIUM トップページ">
+      <span class="logo-icon" aria-hidden="true">
+        <!-- Frog SVG -->
+        <svg width="34" height="30" viewBox="0 0 34 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Body -->
+          <ellipse cx="17" cy="19" rx="12" ry="9.5" fill="currentColor"/>
+          <!-- Eye bumps -->
+          <circle cx="9.5" cy="11" r="5.5" fill="currentColor"/>
+          <circle cx="24.5" cy="11" r="5.5" fill="currentColor"/>
+          <!-- Eye whites -->
+          <circle cx="9.5" cy="10" r="2.8" fill="white"/>
+          <circle cx="24.5" cy="10" r="2.8" fill="white"/>
+          <!-- Pupils -->
+          <circle cx="9.5" cy="10" r="1.4" fill="#0B1910"/>
+          <circle cx="24.5" cy="10" r="1.4" fill="#0B1910"/>
+          <!-- Toe left -->
+          <path d="M5 25 Q2 28 1 29" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M5 25 Q3 29 5 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M5 25 Q7 29 8 29" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- Toe right -->
+          <path d="M29 25 Q32 28 33 29" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M29 25 Q31 29 29 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M29 25 Q27 29 26 29" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="logo-text">RANARIUM</span>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="nav-desktop" aria-label="グローバルナビゲーション">
+      {nav.map(item => (
+        <a
+          href={item.href}
+          class={`nav-link ${pathname.startsWith(item.href) ? 'active' : ''}`}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- CTA -->
+    <a href="/contact" class="btn-primary header-cta">
+      お問い合わせ
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+
+    <!-- Mobile hamburger -->
+    <button class="hamburger" id="menu-btn" aria-label="メニューを開く" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <nav>
+      {nav.map(item => (
+        <a href={item.href} class="mobile-nav-link">{item.label}</a>
+      ))}
+      <a href="/contact" class="btn-primary" style="margin-top: 12px; width: 100%; justify-content: center;">
+        お問い合わせ
+      </a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  #site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(244, 251, 247, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--color-border);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  #site-header.scrolled {
+    background: rgba(244, 251, 247, 0.97);
+    box-shadow: 0 4px 24px rgba(0, 100, 60, 0.08);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    height: 72px;
+  }
+
+  /* Logo */
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .logo-icon {
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+  }
+
+  .logo:hover .logo-icon {
+    transform: scale(1.12) rotate(-5deg);
+  }
+
+  .logo-text {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    color: var(--color-ink);
+  }
+
+  /* Desktop nav */
+  .nav-desktop {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: auto;
+  }
+
+  .nav-link {
+    padding: 8px 16px;
+    font-family: var(--font-display);
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--color-ink-soft);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--color-accent-deep);
+    background: rgba(0, 200, 150, 0.08);
+  }
+
+  .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--color-accent);
+  }
+
+  .header-cta {
+    padding: 10px 22px;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  /* Hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+    transition: background 0.2s;
+    margin-left: auto;
+  }
+
+  .hamburger:hover {
+    background: var(--color-surface);
+  }
+
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--color-ink);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+
+  .hamburger[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .hamburger[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  .hamburger[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Mobile menu */
+  .mobile-menu {
+    display: none;
+    padding: 16px 24px 24px;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .mobile-menu nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .mobile-nav-link {
+    padding: 14px 16px;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    border-radius: 10px;
+    transition: all 0.2s ease;
+  }
+
+  .mobile-nav-link:hover {
+    background: var(--color-surface);
+    color: var(--color-accent-deep);
+    padding-left: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .nav-desktop { display: none; }
+    .header-cta  { display: none; }
+    .hamburger   { display: flex; }
+    .mobile-menu.open { display: block; }
+  }
+</style>
+
+<script>
+  const header  = document.getElementById('site-header')!;
+  const menuBtn = document.getElementById('menu-btn')!;
+  const mobileMenu = document.getElementById('mobile-menu')!;
+
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  menuBtn.addEventListener('click', () => {
+    const open = menuBtn.getAttribute('aria-expanded') === 'true';
+    menuBtn.setAttribute('aria-expanded', String(!open));
+    mobileMenu.classList.toggle('open', !open);
+    mobileMenu.setAttribute('aria-hidden', String(open));
+  });
+</script>

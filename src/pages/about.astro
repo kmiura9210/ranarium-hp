@@ -1,0 +1,363 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="会社概要" description="株式会社RANARIUMの会社概要ページ。ミッション・ビジョン・会社情報をご覧ください。">
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="hero-bubbles" aria-hidden="true">
+      <div class="bubble" style="width:14px;height:14px;left:12%;--duration:10s;--delay:0s;--sway:12px;"></div>
+      <div class="bubble" style="width:8px;height:8px;left:35%;--duration:13s;--delay:2s;--sway:-8px;"></div>
+      <div class="bubble" style="width:18px;height:18px;left:65%;--duration:9s;--delay:1s;--sway:16px;"></div>
+      <div class="bubble" style="width:10px;height:10px;left:88%;--duration:11s;--delay:3s;--sway:-10px;"></div>
+    </div>
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="/">ホーム</a>
+        <span aria-hidden="true">/</span>
+        <span>会社概要</span>
+      </nav>
+      <div class="page-hero-inner animate-fade-in-up">
+        <p class="section-label">About Us</p>
+        <h1 class="page-title">会社概要</h1>
+        <p class="page-subtitle">
+          RANARIUMという名には「カエルの生態系」という意味が込められています。<br/>
+          多様な知識・技術が有機的につながり、企業の成長を後押しします。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission / Vision -->
+  <section class="section mission-section">
+    <div class="container">
+      <div class="mission-grid">
+        <div class="mission-card glass-card animate-fade-in-up" data-animate>
+          <div class="mission-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <circle cx="20" cy="20" r="18" stroke="var(--color-accent)" stroke-width="1.5"/>
+              <path d="M12 20 L17 25 L28 14" stroke="var(--color-accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h2 class="mission-label">ミッション</h2>
+          <p class="mission-text">
+            テクノロジーの力で、すべての企業が自らの可能性を最大限に発揮できる社会を創る。
+          </p>
+        </div>
+
+        <div class="mission-card glass-card animate-fade-in-up delay-200" data-animate>
+          <div class="mission-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <path d="M20 5 L37 15 V25 L20 35 L3 25 V15 Z" stroke="var(--color-water)" stroke-width="1.5"/>
+              <circle cx="20" cy="20" r="6" stroke="var(--color-water)" stroke-width="1.5"/>
+              <path d="M20 10 V14 M20 26 V30 M10 20 H14 M26 20 H30" stroke="var(--color-water)" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h2 class="mission-label">ビジョン</h2>
+          <p class="mission-text">
+            AIとITが自然に融け込む、次世代のビジネスエコシステムを共に設計・構築するリーディングカンパニー。
+          </p>
+        </div>
+
+        <div class="mission-card glass-card animate-fade-in-up delay-400" data-animate>
+          <div class="mission-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <path d="M20 8 C20 8 10 14 10 22 C10 27.52 14.48 32 20 32 C25.52 32 30 27.52 30 22 C30 14 20 8 20 8Z" stroke="var(--color-accent)" stroke-width="1.5"/>
+              <path d="M14 24 Q18 18 26 22" stroke="var(--color-accent)" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+            </svg>
+          </div>
+          <h2 class="mission-label">バリュー</h2>
+          <p class="mission-text">
+            誠実・革新・共創。お客様と共に学び続け、最高の価値を提供し続けることをコアバリューとします。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Company Info -->
+  <section class="section info-section">
+    <div class="container">
+      <div class="info-inner">
+        <div class="info-header" data-animate>
+          <p class="section-label">Company Info</p>
+          <h2 class="section-title">会社情報</h2>
+        </div>
+
+        <div class="info-table-wrap glass-card" data-animate>
+          <table class="info-table">
+            <tbody>
+              {[
+                { label: '会社名',    value: '株式会社RANARIUM' },
+                { label: '英文社名',  value: 'RANARIUM Co., Ltd.' },
+                { label: '設立',      value: '2023年〇月〇日' },
+                { label: '資本金',    value: '〇〇〇万円' },
+                { label: '代表取締役', value: '〇〇 〇〇' },
+                { label: '所在地',    value: '〒000-0000 東京都〇〇区〇〇X-X-X' },
+                { label: '事業内容',  value: 'IT・AIコンサルティング / システム開発 / DXソリューション / データ分析' },
+                { label: 'メールアドレス', value: 'info@ranarium.co.jp' },
+              ].map(row => (
+                <tr>
+                  <th>{row.label}</th>
+                  <td>{row.value}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team / Culture -->
+  <section class="section culture-section">
+    <div class="container">
+      <div class="culture-header" data-animate>
+        <p class="section-label">Culture</p>
+        <h2 class="section-title">RANARIUMの文化</h2>
+      </div>
+
+      <div class="culture-grid">
+        {[
+          {
+            num: '01',
+            title: '多様性と専門性',
+            desc: 'エンジニア、デザイナー、データサイエンティストなど多彩なバックグラウンドを持つメンバーが集まり、課題を多角的に捉えます。',
+          },
+          {
+            num: '02',
+            title: '継続的な学習',
+            desc: '技術の進化が早いAI・IT領域において、学習を止めないカルチャーを大切にしています。社内勉強会・カンファレンス参加を積極支援。',
+          },
+          {
+            num: '03',
+            title: '顧客との共創',
+            desc: '受託ではなくパートナーとして。お客様のチームに入り込み、共にプロダクトを育てるスタイルを基本としています。',
+          },
+        ].map((c, i) => (
+          <div class="culture-card" data-animate style={`animation-delay: ${i * 0.15}s`}>
+            <span class="culture-num">{c.num}</span>
+            <h3 class="culture-title">{c.title}</h3>
+            <p class="culture-desc">{c.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section cta-mini">
+    <div class="container cta-mini-inner" data-animate>
+      <p>ご一緒に、新しいデジタル生態系を育てませんか？</p>
+      <a href="/contact" class="btn-primary">
+        お問い合わせ
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .page-hero {
+    padding: 140px 0 80px;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(ellipse 60% 50% at 80% 50%, rgba(0,200,150,0.07) 0%, transparent 70%), var(--color-bg);
+  }
+
+  .hero-bubbles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82rem;
+    color: var(--color-ink-muted);
+    margin-bottom: 32px;
+  }
+
+  .breadcrumb a {
+    color: var(--color-ink-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover { color: var(--color-accent-deep); }
+
+  .page-hero-inner { max-width: 700px; }
+
+  .page-title {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+
+  .page-subtitle {
+    font-size: 1rem;
+    color: var(--color-ink-soft);
+    line-height: 1.85;
+  }
+
+  .section-title {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 800;
+    margin-bottom: 16px;
+  }
+
+  /* Mission */
+  .mission-section { background: var(--color-surface); }
+
+  .mission-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .mission-card {
+    padding: 36px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .mission-icon { width: 40px; height: 40px; }
+
+  .mission-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-ink-muted);
+  }
+
+  .mission-text {
+    font-size: 0.95rem;
+    color: var(--color-ink-soft);
+    line-height: 1.8;
+  }
+
+  /* Info table */
+  .info-inner { max-width: 800px; margin: 0 auto; }
+  .info-header { margin-bottom: 40px; }
+
+  .info-table-wrap { overflow: hidden; }
+
+  .info-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .info-table tr {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .info-table tr:last-child { border-bottom: none; }
+
+  .info-table th {
+    padding: 20px 28px;
+    text-align: left;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-ink-muted);
+    white-space: nowrap;
+    width: 160px;
+    background: rgba(0,200,150,0.03);
+    vertical-align: top;
+  }
+
+  .info-table td {
+    padding: 20px 28px;
+    font-size: 0.95rem;
+    color: var(--color-ink-soft);
+    line-height: 1.7;
+  }
+
+  /* Culture */
+  .culture-section { background: var(--color-surface); }
+  .culture-header { margin-bottom: 48px; }
+
+  .culture-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .culture-card {
+    padding: 36px 28px;
+    border-radius: 20px;
+    background: white;
+    border: 1px solid var(--color-border);
+    transition: all 0.3s ease;
+  }
+
+  .culture-card:hover {
+    border-color: rgba(0,200,150,0.3);
+    box-shadow: 0 12px 32px rgba(0,120,90,0.1);
+    transform: translateY(-4px);
+  }
+
+  .culture-num {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: var(--color-accent);
+    margin-bottom: 16px;
+  }
+
+  .culture-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .culture-desc {
+    font-size: 0.88rem;
+    color: var(--color-ink-soft);
+    line-height: 1.8;
+  }
+
+  /* CTA mini */
+  .cta-mini { background: var(--color-bg); }
+
+  .cta-mini-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 40px 48px;
+    background: linear-gradient(135deg, var(--color-surface), var(--color-surface-2));
+    border-radius: 24px;
+    border: 1px solid var(--color-border);
+  }
+
+  .cta-mini-inner p {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+
+  @media (max-width: 768px) {
+    .mission-grid  { grid-template-columns: 1fr; }
+    .culture-grid  { grid-template-columns: 1fr; }
+    .info-table th { width: 120px; padding: 16px 16px; }
+    .info-table td { padding: 16px 16px; }
+    .cta-mini-inner {
+      flex-direction: column;
+      text-align: center;
+      padding: 32px 24px;
+    }
+  }
+</style>

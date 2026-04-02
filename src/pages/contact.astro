@@ -1,0 +1,516 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="お問い合わせ" description="株式会社RANARIUMへのお問い合わせはこちら。無料相談・お見積りも受け付けています。">
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="hero-bubbles" aria-hidden="true">
+      <div class="bubble" style="width:14px;height:14px;left:6%;--duration:9s;--delay:0s;--sway:12px;"></div>
+      <div class="bubble" style="width:10px;height:10px;left:25%;--duration:12s;--delay:1.5s;--sway:-8px;"></div>
+      <div class="bubble" style="width:18px;height:18px;left:80%;--duration:10s;--delay:3s;--sway:14px;"></div>
+    </div>
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="/">ホーム</a><span>/</span><span>お問い合わせ</span>
+      </nav>
+      <div class="page-hero-inner animate-fade-in-up">
+        <p class="section-label">Contact</p>
+        <h1 class="page-title">お問い合わせ</h1>
+        <p class="page-subtitle">
+          サービスへのご質問・無料相談・お見積りなど、<br/>
+          どんな小さなことでもお気軽にご連絡ください。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Layout -->
+  <section class="section contact-section">
+    <div class="container contact-inner">
+
+      <!-- Info panel -->
+      <aside class="contact-info" data-animate>
+        <div class="info-card glass-card">
+          <div class="info-logo" aria-hidden="true">
+            <svg viewBox="0 0 34 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="17" cy="19" rx="12" ry="9.5" fill="var(--color-accent)"/>
+              <circle cx="9.5" cy="11" r="5.5" fill="var(--color-accent)"/>
+              <circle cx="24.5" cy="11" r="5.5" fill="var(--color-accent)"/>
+              <circle cx="9.5" cy="10" r="2.8" fill="white"/>
+              <circle cx="24.5" cy="10" r="2.8" fill="white"/>
+              <circle cx="9.5" cy="10" r="1.4" fill="#0B1910"/>
+              <circle cx="24.5" cy="10" r="1.4" fill="#0B1910"/>
+              <path d="M5 25 Q2 28 1 29" stroke="var(--color-accent)" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M5 25 Q3 29 5 30" stroke="var(--color-accent)" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M5 25 Q7 29 8 29" stroke="var(--color-accent)" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M29 25 Q32 28 33 29" stroke="var(--color-accent)" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M29 25 Q31 29 29 30" stroke="var(--color-accent)" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M29 25 Q27 29 26 29" stroke="var(--color-accent)" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+
+          <h2 class="info-company">株式会社RANARIUM</h2>
+
+          <div class="info-items">
+            <div class="info-item">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path d="M9 2C6.24 2 4 4.24 4 7c0 4.5 5 9 5 9s5-4.5 5-9c0-2.76-2.24-5-5-5zm0 6.5A1.5 1.5 0 1 1 9 5a1.5 1.5 0 0 1 0 3.5z" fill="var(--color-accent)"/>
+              </svg>
+              <div>
+                <p class="info-label">所在地</p>
+                <p>〒000-0000<br/>東京都〇〇区〇〇 X-X-X</p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <rect x="2" y="4" width="14" height="10" rx="1.5" stroke="var(--color-accent)" stroke-width="1.4"/>
+                <path d="M2 5l7 5.5L16 5" stroke="var(--color-accent)" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+              <div>
+                <p class="info-label">メール</p>
+                <p>info@ranarium.co.jp</p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <circle cx="9" cy="9" r="7" stroke="var(--color-accent)" stroke-width="1.4"/>
+                <path d="M9 5v4l3 3" stroke="var(--color-accent)" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+              <div>
+                <p class="info-label">受付時間</p>
+                <p>平日 10:00〜18:00<br/>（土日祝を除く）</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-note">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <circle cx="7" cy="7" r="6" stroke="var(--color-accent)" stroke-width="1.2"/>
+              <path d="M7 6v4M7 4h.01" stroke="var(--color-accent)" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+            通常2営業日以内にご返信いたします。
+          </div>
+        </div>
+      </aside>
+
+      <!-- Form -->
+      <div class="contact-form-wrap" data-animate style="animation-delay: 0.15s">
+        <div class="form-card glass-card">
+          <h2 class="form-heading">お問い合わせフォーム</h2>
+
+          <form id="contact-form" class="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-field">
+                <label class="form-label" for="name">
+                  お名前 <span class="required">必須</span>
+                </label>
+                <input
+                  class="form-input"
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="山田 太郎"
+                  required
+                  autocomplete="name"
+                />
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="company">
+                  会社名 <span class="required">必須</span>
+                </label>
+                <input
+                  class="form-input"
+                  type="text"
+                  id="company"
+                  name="company"
+                  placeholder="株式会社〇〇"
+                  required
+                  autocomplete="organization"
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label class="form-label" for="email">
+                  メールアドレス <span class="required">必須</span>
+                </label>
+                <input
+                  class="form-input"
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="taro@example.com"
+                  required
+                  autocomplete="email"
+                />
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="phone">電話番号</label>
+                <input
+                  class="form-input"
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  placeholder="03-0000-0000"
+                  autocomplete="tel"
+                />
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="service">ご興味のあるサービス</label>
+              <select class="form-input form-select" id="service" name="service">
+                <option value="">選択してください</option>
+                <option value="ai">AIコンサルティング</option>
+                <option value="dev">システム開発</option>
+                <option value="dx">DXソリューション</option>
+                <option value="data">データ分析</option>
+                <option value="other">その他・複数のサービス</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="message">
+                お問い合わせ内容 <span class="required">必須</span>
+              </label>
+              <textarea
+                class="form-input"
+                id="message"
+                name="message"
+                placeholder="ご相談内容・ご質問をご記入ください。"
+                required
+                rows="6"
+              ></textarea>
+            </div>
+
+            <div class="form-privacy">
+              <label class="privacy-label">
+                <input type="checkbox" id="privacy" name="privacy" required />
+                <span class="privacy-check"></span>
+                <span>
+                  <a href="/privacy" target="_blank" rel="noopener">プライバシーポリシー</a>に同意する
+                </span>
+              </label>
+            </div>
+
+            <button type="submit" class="btn-primary submit-btn" id="submit-btn">
+              送信する
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </form>
+
+          <!-- Success state -->
+          <div class="form-success" id="form-success" aria-live="polite">
+            <div class="success-icon">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                <circle cx="24" cy="24" r="22" stroke="var(--color-accent)" stroke-width="2"/>
+                <path d="M14 24l8 8 12-16" stroke="var(--color-accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>送信が完了しました</h3>
+            <p>お問い合わせありがとうございます。<br/>通常2営業日以内にご返信いたします。</p>
+            <a href="/" class="btn-outline" style="margin-top: 16px;">トップに戻る</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .page-hero {
+    padding: 140px 0 80px;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(ellipse 60% 50% at 60% 40%, rgba(0,200,150,0.06) 0%, transparent 70%), var(--color-bg);
+  }
+
+  .hero-bubbles { position: absolute; inset: 0; pointer-events: none; }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82rem;
+    color: var(--color-ink-muted);
+    margin-bottom: 32px;
+  }
+
+  .breadcrumb a { color: var(--color-ink-muted); text-decoration: none; transition: color 0.2s; }
+  .breadcrumb a:hover { color: var(--color-accent-deep); }
+
+  .page-hero-inner { max-width: 600px; }
+
+  .page-title {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    margin-bottom: 16px;
+  }
+
+  .page-subtitle {
+    font-size: 1rem;
+    color: var(--color-ink-soft);
+    line-height: 1.85;
+  }
+
+  /* Contact layout */
+  .contact-section { background: var(--color-surface); }
+
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.8fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  /* Info card */
+  .info-card {
+    padding: 36px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .info-logo {
+    width: 56px;
+    height: 48px;
+  }
+
+  .info-logo svg { width: 100%; height: auto; }
+
+  .info-company {
+    font-size: 1.1rem;
+    font-weight: 800;
+    line-height: 1.3;
+  }
+
+  .info-items {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .info-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .info-item svg { flex-shrink: 0; margin-top: 2px; }
+
+  .info-label {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-muted);
+    margin-bottom: 4px;
+  }
+
+  .info-item p {
+    font-size: 0.9rem;
+    color: var(--color-ink-soft);
+    line-height: 1.65;
+  }
+
+  .info-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.82rem;
+    color: var(--color-ink-muted);
+    line-height: 1.6;
+    padding: 14px;
+    background: rgba(0,200,150,0.05);
+    border-radius: 10px;
+    border: 1px solid rgba(0,200,150,0.15);
+  }
+
+  .info-note svg { flex-shrink: 0; margin-top: 1px; }
+
+  /* Form card */
+  .form-card {
+    padding: 40px 36px;
+  }
+
+  .form-heading {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 32px;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .required {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #E74C3C;
+    background: rgba(231,76,60,0.08);
+    border-radius: 4px;
+    padding: 2px 6px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  .form-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A9987' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+    cursor: pointer;
+  }
+
+  /* Privacy checkbox */
+  .form-privacy {
+    margin-top: -4px;
+  }
+
+  .privacy-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    font-size: 0.88rem;
+    color: var(--color-ink-soft);
+  }
+
+  .privacy-label input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .privacy-check {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--color-border);
+    border-radius: 6px;
+    background: white;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .privacy-label input:checked + .privacy-check {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+
+  .privacy-label input:checked + .privacy-check::after {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 6px;
+    border-left: 2px solid white;
+    border-bottom: 2px solid white;
+    transform: rotate(-45deg) translate(1px, -1px);
+  }
+
+  .privacy-label a {
+    color: var(--color-accent-deep);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 17px;
+    font-size: 1rem;
+    margin-top: 4px;
+  }
+
+  /* Success */
+  .form-success {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+    padding: 32px 0;
+    animation: fade-in-up 0.6s ease-out both;
+  }
+
+  .form-success.visible {
+    display: flex;
+  }
+
+  .success-icon {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .form-success h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+
+  .form-success p {
+    font-size: 0.95rem;
+    color: var(--color-ink-soft);
+    line-height: 1.75;
+  }
+
+  @media (max-width: 900px) {
+    .contact-inner {
+      grid-template-columns: 1fr;
+    }
+    .contact-info { order: 2; }
+    .contact-form-wrap { order: 1; }
+  }
+
+  @media (max-width: 560px) {
+    .form-card { padding: 28px 20px; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const success = document.getElementById('form-success')!;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    // Loading state
+    submitBtn.disabled = true;
+    submitBtn.textContent = '送信中...';
+
+    // Simulate send (replace with actual API endpoint)
+    await new Promise(resolve => setTimeout(resolve, 1200));
+
+    form.style.display = 'none';
+    success.classList.add('visible');
+  });
+</script>

@@ -1,0 +1,70 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = '株式会社RANARIUMはIT・AIコンサルティング、システム開発、DXソリューションを提供するテクノロジー企業です。',
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title === 'トップ' ? '株式会社RANARIUM' : `${title} | 株式会社RANARIUM`}</title>
+
+    <!-- OGP -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={`${title} | 株式会社RANARIUM`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content="ja_JP" />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      // Ripple effect on .btn-primary
+      document.querySelectorAll('.btn-primary').forEach(btn => {
+        btn.addEventListener('click', function (e: Event) {
+          const me = e as MouseEvent;
+          const ripple = document.createElement('span');
+          ripple.classList.add('ripple');
+          const rect = (this as HTMLElement).getBoundingClientRect();
+          const size = Math.max(rect.width, rect.height);
+          ripple.style.width = ripple.style.height = size + 'px';
+          ripple.style.left = me.clientX - rect.left - size / 2 + 'px';
+          ripple.style.top  = me.clientY - rect.top  - size / 2 + 'px';
+          (this as HTMLElement).appendChild(ripple);
+          ripple.addEventListener('animationend', () => ripple.remove());
+        });
+      });
+
+      // Intersection observer for fade-in
+      const observer = new IntersectionObserver(
+        entries => entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('animate-fade-in-up');
+            observer.unobserve(e.target);
+          }
+        }),
+        { threshold: 0.15 }
+      );
+      document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+    </script>
+  </body>
+</html>

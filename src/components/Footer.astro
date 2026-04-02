@@ -1,0 +1,263 @@
+---
+const year = new Date().getFullYear();
+
+const links = [
+  {
+    heading: 'サービス',
+    items: [
+      { label: 'AIコンサルティング', href: '/services#ai' },
+      { label: 'システム開発',       href: '/services#dev' },
+      { label: 'DXソリューション',   href: '/services#dx'  },
+      { label: 'データ分析',         href: '/services#data' },
+    ],
+  },
+  {
+    heading: '会社情報',
+    items: [
+      { label: '会社概要',   href: '/about'   },
+      { label: 'お知らせ',   href: '/news'    },
+      { label: 'お問い合わせ', href: '/contact' },
+    ],
+  },
+];
+---
+
+<footer>
+  <div class="footer-wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#0B1910"/>
+    </svg>
+  </div>
+
+  <div class="footer-body">
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- Brand -->
+        <div class="footer-brand">
+          <a href="/" class="footer-logo">
+            <svg width="30" height="26" viewBox="0 0 34 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="17" cy="19" rx="12" ry="9.5" fill="currentColor"/>
+              <circle cx="9.5" cy="11" r="5.5" fill="currentColor"/>
+              <circle cx="24.5" cy="11" r="5.5" fill="currentColor"/>
+              <circle cx="9.5" cy="10" r="2.8" fill="#0B1910"/>
+              <circle cx="24.5" cy="10" r="2.8" fill="#0B1910"/>
+              <circle cx="9.5" cy="10" r="1.2" fill="rgba(244,251,247,0.8)"/>
+              <circle cx="24.5" cy="10" r="1.2" fill="rgba(244,251,247,0.8)"/>
+              <path d="M5 25 Q2 28 1 29" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M5 25 Q3 29 5 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M5 25 Q7 29 8 29" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M29 25 Q32 28 33 29" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M29 25 Q31 29 29 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M29 25 Q27 29 26 29" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+            <span>RANARIUM</span>
+          </a>
+          <p class="footer-tagline">
+            ITとAIで、あなたの<br/>ビジネスに新たな生態系を。
+          </p>
+          <a href="/contact" class="btn-primary footer-cta">
+            お問い合わせ
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+              <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Links -->
+        {links.map(group => (
+          <div class="footer-link-group">
+            <p class="footer-link-heading">{group.heading}</p>
+            <ul>
+              {group.items.map(item => (
+                <li><a href={item.href} class="footer-link">{item.label}</a></li>
+              ))}
+            </ul>
+          </div>
+        ))}
+
+        <!-- Contact info -->
+        <div class="footer-link-group">
+          <p class="footer-link-heading">連絡先</p>
+          <ul class="footer-contact">
+            <li>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M8 1C5.24 1 3 3.24 3 6c0 4 5 9 5 9s5-5 5-9c0-2.76-2.24-5-5-5zm0 6.5A1.5 1.5 0 1 1 8 4a1.5 1.5 0 0 1 0 3.5z" fill="currentColor"/>
+              </svg>
+              東京都〇〇区〇〇 X-X-X
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M2 4h12v8a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4zm0 0l6 5 6-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+              info@ranarium.co.jp
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; {year} 株式会社RANARIUM. All Rights Reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="/privacy">プライバシーポリシー</a>
+          <a href="/terms">利用規約</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer {
+    margin-top: 0;
+  }
+
+  .footer-wave {
+    display: block;
+    line-height: 0;
+  }
+
+  .footer-wave svg {
+    width: 100%;
+    height: 60px;
+    display: block;
+  }
+
+  .footer-body {
+    background: #0B1910;
+    color: rgba(244, 251, 247, 0.75);
+    padding: 60px 0 40px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr 1fr 1.3fr;
+    gap: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-accent);
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    margin-bottom: 16px;
+  }
+
+  .footer-tagline {
+    font-size: 0.88rem;
+    line-height: 1.8;
+    color: rgba(244, 251, 247, 0.5);
+    margin-bottom: 24px;
+  }
+
+  .footer-cta {
+    padding: 10px 22px;
+    font-size: 0.85rem;
+    display: inline-flex;
+  }
+
+  .footer-link-heading {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(244, 251, 247, 0.35);
+    margin-bottom: 16px;
+  }
+
+  .footer-link-group ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-link {
+    font-size: 0.9rem;
+    color: rgba(244, 251, 247, 0.65);
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+
+  .footer-link:hover {
+    color: var(--color-accent);
+    padding-left: 4px;
+  }
+
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer-contact li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.88rem;
+    color: rgba(244, 251, 247, 0.6);
+    line-height: 1.5;
+  }
+
+  .footer-contact li svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+    opacity: 0.6;
+  }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 28px;
+  }
+
+  .footer-copy {
+    font-size: 0.8rem;
+    color: rgba(244, 251, 247, 0.3);
+    letter-spacing: 0.02em;
+  }
+
+  .footer-bottom-links {
+    display: flex;
+    gap: 24px;
+  }
+
+  .footer-bottom-links a {
+    font-size: 0.8rem;
+    color: rgba(244, 251, 247, 0.35);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-bottom-links a:hover {
+    color: rgba(244, 251, 247, 0.7);
+  }
+
+  @media (max-width: 900px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .footer-bottom {
+      flex-direction: column;
+      gap: 12px;
+      text-align: center;
+    }
+  }
+</style>
