@@ -1,0 +1,49 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="決算公告" description="株式会社RANARIUMの決算公告ページです。">
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-inner animate-fade-in-up">
+        <p class="section-label">Financial Notice</p>
+        <h1 class="page-title">決算公告</h1>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="notice-box glass-card">
+        <p class="notice-text">現在、公告すべき決算情報はございません。</p>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .page-hero {
+    padding: 140px 0 60px;
+    background: radial-gradient(ellipse 60% 50% at 60% 40%, rgba(0,200,150,0.06) 0%, transparent 70%), var(--color-bg);
+  }
+
+  .page-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 0;
+  }
+
+  .notice-box {
+    max-width: 600px;
+    padding: 48px 40px;
+    text-align: center;
+  }
+
+  .notice-text {
+    font-size: 1rem;
+    color: var(--color-ink-soft);
+    line-height: 1.8;
+  }
+</style>
