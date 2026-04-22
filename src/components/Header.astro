@@ -14,7 +14,7 @@ const pathname = Astro.url.pathname;
     <!-- Logo -->
     <a href="/" class="logo" aria-label="株式会社RANARIUM トップページ">
       <span class="logo-icon" aria-hidden="true">
-        <!-- Frog SVG -->
+        <!-- Frog SVG (monochrome) -->
         <svg width="34" height="30" viewBox="0 0 34 30" fill="none" xmlns="http://www.w3.org/2000/svg">
           <!-- Body -->
           <ellipse cx="17" cy="19" rx="12" ry="9.5" fill="currentColor"/>
@@ -25,8 +25,8 @@ const pathname = Astro.url.pathname;
           <circle cx="9.5" cy="10" r="2.8" fill="white"/>
           <circle cx="24.5" cy="10" r="2.8" fill="white"/>
           <!-- Pupils -->
-          <circle cx="9.5" cy="10" r="1.4" fill="#0B1910"/>
-          <circle cx="24.5" cy="10" r="1.4" fill="#0B1910"/>
+          <circle cx="9.5" cy="10" r="1.4" fill="#1d1d1f"/>
+          <circle cx="24.5" cy="10" r="1.4" fill="#1d1d1f"/>
           <!-- Toe left -->
           <path d="M5 25 Q2 28 1 29" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
           <path d="M5 25 Q3 29 5 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
@@ -86,7 +86,7 @@ const pathname = Astro.url.pathname;
     left: 0;
     right: 0;
     z-index: 100;
-    background: rgba(244, 251, 247, 0.85);
+    background: rgba(255, 255, 255, 0.88);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--color-border);
@@ -94,15 +94,15 @@ const pathname = Astro.url.pathname;
   }
 
   #site-header.scrolled {
-    background: rgba(244, 251, 247, 0.97);
-    box-shadow: 0 4px 24px rgba(0, 100, 60, 0.08);
+    background: rgba(255, 255, 255, 0.97);
+    box-shadow: 0 1px 0 var(--color-border);
   }
 
   .header-inner {
     display: flex;
     align-items: center;
     gap: 32px;
-    height: 72px;
+    height: 68px;
   }
 
   /* Logo */
@@ -115,65 +115,65 @@ const pathname = Astro.url.pathname;
   }
 
   .logo-icon {
-    color: var(--color-accent);
+    color: var(--color-ink);
     display: flex;
     align-items: center;
     transition: transform 0.3s ease;
   }
 
   .logo:hover .logo-icon {
-    transform: scale(1.12) rotate(-5deg);
+    transform: scale(1.1) rotate(-4deg);
   }
 
   .logo-text {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    font-weight: 800;
-    letter-spacing: 0.06em;
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
     color: var(--color-ink);
+    text-transform: uppercase;
   }
 
   /* Desktop nav */
   .nav-desktop {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 0;
     margin-left: auto;
   }
 
   .nav-link {
     padding: 8px 16px;
-    font-family: var(--font-display);
-    font-size: 0.88rem;
-    font-weight: 600;
-    color: var(--color-ink-soft);
-    border-radius: 8px;
-    transition: all 0.2s ease;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-ink-muted);
+    border-radius: 2px;
+    transition: color 0.2s ease;
     position: relative;
+    letter-spacing: 0.02em;
   }
 
   .nav-link:hover,
   .nav-link.active {
-    color: var(--color-accent-deep);
-    background: rgba(0, 200, 150, 0.08);
+    color: var(--color-ink);
   }
 
   .nav-link.active::after {
     content: '';
     position: absolute;
-    bottom: 4px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: var(--color-accent);
+    bottom: 2px;
+    left: 16px;
+    right: 16px;
+    height: 1px;
+    background: var(--color-ink);
   }
 
   .header-cta {
-    padding: 10px 22px;
-    font-size: 0.85rem;
+    padding: 9px 20px;
+    font-size: 0.82rem;
     flex-shrink: 0;
+    letter-spacing: 0.05em;
   }
 
   /* Hamburger */
@@ -189,7 +189,7 @@ const pathname = Astro.url.pathname;
     border: none;
     cursor: pointer;
     padding: 6px;
-    border-radius: 8px;
+    border-radius: 2px;
     transition: background 0.2s;
     margin-left: auto;
   }
@@ -201,22 +201,22 @@ const pathname = Astro.url.pathname;
   .hamburger span {
     display: block;
     width: 22px;
-    height: 2px;
+    height: 1.5px;
     background: var(--color-ink);
-    border-radius: 2px;
+    border-radius: 1px;
     transition: all 0.3s ease;
     transform-origin: center;
   }
 
   .hamburger[aria-expanded="true"] span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
+    transform: translateY(6.5px) rotate(45deg);
   }
   .hamburger[aria-expanded="true"] span:nth-child(2) {
     opacity: 0;
     transform: scaleX(0);
   }
   .hamburger[aria-expanded="true"] span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
+    transform: translateY(-6.5px) rotate(-45deg);
   }
 
   /* Mobile menu */
@@ -224,27 +224,28 @@ const pathname = Astro.url.pathname;
     display: none;
     padding: 16px 24px 24px;
     border-top: 1px solid var(--color-border);
+    background: #ffffff;
   }
 
   .mobile-menu nav {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 2px;
   }
 
   .mobile-nav-link {
     padding: 14px 16px;
-    font-family: var(--font-display);
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--color-ink);
-    border-radius: 10px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--color-ink-soft);
+    border-radius: 2px;
     transition: all 0.2s ease;
   }
 
   .mobile-nav-link:hover {
     background: var(--color-surface);
-    color: var(--color-accent-deep);
+    color: var(--color-ink);
     padding-left: 20px;
   }
 
