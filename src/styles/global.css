@@ -262,6 +262,82 @@ img {
   pointer-events: none;
 }
 
+/* =====================
+   AQUARIUM BUBBLES (page-wide rising bubbles)
+===================== */
+@keyframes bubble-rise {
+  0% {
+    transform: translate(0, 0) scale(0.85);
+    opacity: 0;
+  }
+  10% { opacity: var(--opacity, 0.08); }
+  50% {
+    transform: translate(calc(var(--drift, 0px) * 0.5), -55vh) scale(1);
+  }
+  90% { opacity: calc(var(--opacity, 0.08) * 0.6); }
+  100% {
+    transform: translate(var(--drift, 0px), -110vh) scale(1.05);
+    opacity: 0;
+  }
+}
+
+.aquarium-bubbles {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.aquarium-bubbles .bubble {
+  position: absolute;
+  bottom: -160px;
+  left: var(--left, 50%);
+  width: var(--size, 60px);
+  height: var(--size, 60px);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 32% 30%,
+    rgba(255, 255, 255, 0.85) 0%,
+    rgba(220, 220, 225, 0.25) 28%,
+    rgba(29, 29, 31, 0.04) 70%,
+    rgba(29, 29, 31, 0.10) 100%
+  );
+  border: 1.5px solid rgba(29, 29, 31, 0.28);
+  box-shadow:
+    inset 3px 5px 12px rgba(255, 255, 255, 0.65),
+    inset -2px -4px 10px rgba(29, 29, 31, 0.10),
+    0 2px 12px rgba(29, 29, 31, 0.06);
+  opacity: 0;
+  animation: bubble-rise var(--dur, 22s) linear var(--delay, 0s) infinite;
+  will-change: transform, opacity;
+}
+
+.aquarium-bubbles .bubble::after {
+  /* small bright highlight to read on dark sections */
+  content: '';
+  position: absolute;
+  top: 14%;
+  left: 22%;
+  width: 28%;
+  height: 22%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.9), rgba(255,255,255,0) 70%);
+  filter: blur(0.5px);
+}
+
+/* Keep main content & header above the bubbles layer */
+main, header, footer {
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aquarium-bubbles { display: none; }
+}
+
 /* Wave background */
 .wave-bg {
   position: absolute;

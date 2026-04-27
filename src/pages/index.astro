@@ -6,35 +6,22 @@ import Layout from '../layouts/Layout.astro';
 
   <!-- ===== HERO ===== -->
   <section class="hero">
-    <!-- Decorative circles (com-m inspired) -->
-    <div class="hero-circles" aria-hidden="true">
-      <span class="circle circle-1"></span>
-      <span class="circle circle-2"></span>
-      <span class="circle circle-3"></span>
-    </div>
-
-    <!-- Faint frog watermark -->
-    <div class="hero-frog-watermark" aria-hidden="true">
-      <img src="/logo.png" alt="" />
-    </div>
-
     <div class="container hero-content">
       <div class="hero-text">
         <p class="hero-eyebrow animate-fade-in-up">
           <span class="hero-eyebrow-line"></span>
-          co-evolution!
+          rana × rium
         </p>
 
         <h1 class="hero-heading animate-fade-in-up delay-200">
-          <span class="hero-heading-en">ecosystem.</span>
           <span class="hero-heading-ja">
-            ビジネスに、<br/>新たな生態系を。
+            跳ぶ者を、<br/>育てる水槽。
           </span>
         </h1>
 
         <p class="hero-body animate-fade-in-up delay-400">
-          RANARIUMは、AIとITで企業の課題に向き合い、<br class="hero-br"/>
-          共に育ち、共に進化するデジタル・パートナーです。
+          Leapfrogが育つ水槽として、<br class="hero-br"/>
+          AI・ITで、「跳躍する事業」を育てていく。
         </p>
 
         <div class="hero-actions animate-fade-in-up delay-600">
@@ -65,14 +52,14 @@ import Layout from '../layouts/Layout.astro';
         <div class="section-heading-block">
           <p class="section-eyebrow">SOLUTION</p>
           <h2 class="section-title-2">
-            テクノロジーで、<br/>
-            ビジネスを前へ。
+            事業を跳ばす、<br/>
+            3つの専門性。
           </h2>
         </div>
         <p class="section-lead">
-          AIコンサルティング、システム開発、DX推進、データ分析。
-          お客様の課題に寄り添い、最適なソリューションを設計・実装します。
-          技術の選定から運用まで、一貫した伴走支援が私たちの強みです。
+          ビジネスモデルの設計から、プロダクトの実装、AI活用まで。
+          新規事業を跳躍させるために必要な専門性を、一気通貫で提供します。
+          コンサルにとどまらず、現場で手を動かして伴走します。
         </p>
       </div>
 
@@ -80,35 +67,27 @@ import Layout from '../layouts/Layout.astro';
         {[
           {
             num: '01',
-            en: 'AI Consulting',
-            title: 'AIコンサルティング',
-            desc: 'AI導入戦略の立案から、PoC設計、業務適用、運用定着まで。ビジネス成果に直結するAI活用を支援します。',
-            tags: ['#生成AI', '#業務効率化', '#PoC設計', '#ROI検証'],
-            href: '/services#ai',
+            en: 'Business Development',
+            title: '新規事業開発',
+            desc: 'ビジネスモデルの設計から、市場検証、事業計画策定、投資家向け資料作成まで。「何をやるか」を決める上流から、跳躍する事業の輪郭を描きます。',
+            tags: ['#ビジネスモデル', '#事業計画', '#市場検証', '#KPI設計'],
+            href: '/services#biz',
           },
           {
             num: '02',
-            en: 'System Development',
-            title: 'システム開発',
-            desc: 'Webアプリ・業務システムのフルスクラッチ開発。アジャイルで迅速に価値を届け、長く使える基盤を構築します。',
-            tags: ['#Webアプリ', '#業務システム', '#SaaS', '#アジャイル'],
-            href: '/services#dev',
+            en: 'Product Management',
+            title: 'プロダクト開発PdM',
+            desc: '要件定義、開発ベンダー選定、進行管理から、リリース後のグロース運用まで。スタートアップから大企業の新規事業部門まで、幅広い経験を活かしてプロダクトを形にします。',
+            tags: ['#PdM', '#要件定義', '#開発推進', '#グロース運用'],
+            href: '/services#pdm',
           },
           {
             num: '03',
-            en: 'DX Solution',
-            title: 'DXソリューション',
-            desc: '業務プロセスのデジタル化から、組織・文化の変革まで。現場の声を起点に、地に足のついたDXを推進します。',
-            tags: ['#業務改革', '#自動化', '#クラウド化', '#組織変革'],
-            href: '/services#dx',
-          },
-          {
-            num: '04',
-            en: 'Data Analytics',
-            title: 'データ分析',
-            desc: 'データ基盤の構築から、BI・可視化、機械学習モデルの運用まで。データを意思決定の武器に変えます。',
-            tags: ['#データ基盤', '#BI', '#機械学習', '#可視化'],
-            href: '/services#data',
+            en: 'AI Consulting',
+            title: 'AIコンサルティング',
+            desc: '戦略の絵を描くだけでなく、PoC実装、運用への定着まで踏み込みます。生成AIブームに振り回されず、「使えるAI活用」を設計・実装します。',
+            tags: ['#AI戦略', '#PoC設計', '#生成AI実装', '#運用定着'],
+            href: '/services#ai',
           },
         ].map(s => (
           <a href={s.href} class="solution-card" data-animate>
@@ -128,6 +107,51 @@ import Layout from '../layouts/Layout.astro';
               </svg>
             </span>
           </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STRENGTHS ===== -->
+  <section class="section strengths-section">
+    <div class="container">
+      <div class="section-header-2col" data-animate>
+        <div class="section-heading-block">
+          <p class="section-eyebrow">STRENGTHS</p>
+          <h2 class="section-title-2">
+            選ばれる、<br/>
+            3つの理由。
+          </h2>
+        </div>
+        <p class="section-lead">
+          私たちは「請け負う」のではなく、お客様の事業に深く踏み込み、共に跳躍を生み出します。
+          受託の枠を超えた3つの姿勢が、RANARIUMの強みです。
+        </p>
+      </div>
+
+      <div class="strengths-grid" data-animate>
+        {[
+          {
+            num: '01',
+            title: '自分ごとで、伴走する。',
+            desc: 'お客様の事業を、自分たちの事業として捉える。短期の納品ではなく、長期の成長にコミットします。意思決定の場に同席し、悩みも勝ちも分かち合うパートナーであり続けます。',
+          },
+          {
+            num: '02',
+            title: '手段ではなく、目的から。',
+            desc: 'テクノロジーは目的ではなく手段。「何を成し遂げたいか」から逆算し、最適な技術を選定します。導入して終わりではなく、運用・改善まで一貫して伴走します。',
+          },
+          {
+            num: '03',
+            title: '事業者として、リスクを取る。',
+            desc: '私たち自身も事業を立ち上げ、運営しています。資本も時間もリスクも投じる中で得た「現場の知」を、お客様の現場へ。理論ではなく、実装の知見をお届けします。',
+          },
+        ].map(s => (
+          <article class="strength-card">
+            <div class="strength-num">{s.num}</div>
+            <h3 class="strength-title">{s.title}</h3>
+            <p class="strength-desc">{s.desc}</p>
+          </article>
         ))}
       </div>
     </div>
@@ -193,77 +217,12 @@ import Layout from '../layouts/Layout.astro';
           <article class="work-card" data-animate>
             <div class="work-thumb">
               <span class="work-thumb-label">{w.category}</span>
-              <div class="work-thumb-deco" aria-hidden="true">
-                <span class="wd wd-1"></span>
-                <span class="wd wd-2"></span>
-                <span class="wd wd-3"></span>
-              </div>
             </div>
             <div class="work-body">
               <p class="work-client">{w.client}</p>
               <h3 class="work-title">{w.title}</h3>
               <ul class="work-tags">
                 {w.tags.map(t => <li>{t}</li>)}
-              </ul>
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== DIVISION ===== -->
-  <section class="section division-section">
-    <div class="container">
-      <div class="section-header-2col" data-animate>
-        <div class="section-heading-block">
-          <p class="section-eyebrow">DIVISION</p>
-          <h2 class="section-title-2">
-            専門性を束ねる、<br/>
-            3つの事業部。
-          </h2>
-        </div>
-        <p class="section-lead">
-          それぞれが独立した専門家集団であり、
-          同時に境界を越えて連携する有機的なチーム。
-          これがRANARIUMの「生態系」です。
-        </p>
-      </div>
-
-      <div class="division-list">
-        {[
-          {
-            num: 'DIVISION : 01',
-            en: 'AI & Consulting',
-            title: 'AI・コンサルティング事業部',
-            desc: '生成AI活用・業務適用の戦略設計から、PoC、内製化支援まで。技術とビジネスをつなぐコンサルタント集団です。',
-            items: ['AI戦略立案', 'PoC / 実装支援', '生成AI内製化', 'ROI設計・検証'],
-          },
-          {
-            num: 'DIVISION : 02',
-            en: 'Engineering',
-            title: 'エンジニアリング事業部',
-            desc: 'Web・モバイル・業務システムの設計・開発・運用。フルスタックの知見で、長く使われるプロダクトを作ります。',
-            items: ['Webアプリ開発', 'SaaS開発', '既存システム刷新', 'クラウド構築'],
-          },
-          {
-            num: 'DIVISION : 03',
-            en: 'Data & Analytics',
-            title: 'データ・アナリティクス事業部',
-            desc: 'データ基盤の設計、BIダッシュボード、機械学習モデルの運用化。データを資産に変える専門チーム。',
-            items: ['データ基盤構築', 'BI / 可視化', '機械学習 / MLOps', '分析コンサル'],
-          },
-        ].map(d => (
-          <article class="division-row" data-animate>
-            <div class="division-meta">
-              <p class="division-num">{d.num}</p>
-              <p class="division-en">{d.en}</p>
-            </div>
-            <div class="division-body">
-              <h3 class="division-title">{d.title}</h3>
-              <p class="division-desc">{d.desc}</p>
-              <ul class="division-items">
-                {d.items.map(it => <li>{it}</li>)}
               </ul>
             </div>
           </article>
@@ -287,8 +246,6 @@ import Layout from '../layouts/Layout.astro';
           </p>
           <span class="message-sign">RANARIUM, Inc.</span>
         </div>
-        <span class="message-circle-a" aria-hidden="true"></span>
-        <span class="message-circle-b" aria-hidden="true"></span>
       </div>
 
       <div class="message-text">
@@ -375,9 +332,6 @@ import Layout from '../layouts/Layout.astro';
 
   <!-- ===== CTA ===== -->
   <section class="cta-section">
-    <div class="cta-bg-circles" aria-hidden="true">
-      <span></span><span></span><span></span>
-    </div>
     <div class="container cta-inner" data-animate>
       <p class="section-eyebrow cta-eyebrow">CONTACT</p>
       <h2 class="cta-title">
@@ -410,7 +364,7 @@ import Layout from '../layouts/Layout.astro';
     align-items: center;
     overflow: hidden;
     padding-top: 80px;
-    background: #ffffff;
+    background: transparent;
   }
 
   .hero-circles {
@@ -593,12 +547,73 @@ import Layout from '../layouts/Layout.astro';
     max-width: 560px;
   }
 
+  /* ============= STRENGTHS ============= */
+  .strengths-section { background: transparent; }
+
+  .strengths-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .strength-card {
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    padding: 44px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s, border-color 0.35s;
+    position: relative;
+    overflow: hidden;
+  }
+  .strength-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--color-ink);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .strength-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-ink-soft);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
+  }
+  .strength-card:hover::before { transform: scaleX(1); }
+
+  .strength-num {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--color-ink);
+    letter-spacing: 0.02em;
+  }
+
+  .strength-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+  }
+
+  .strength-desc {
+    font-size: 0.9rem;
+    line-height: 2;
+    color: var(--color-ink-soft);
+  }
+
   /* ============= SOLUTION ============= */
-  .solution-section { background: #ffffff; }
+  .solution-section { background: transparent; }
 
   .solution-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1px;
     background: var(--color-border);
     border: 1px solid var(--color-border);
@@ -674,7 +689,7 @@ import Layout from '../layouts/Layout.astro';
   .solution-card:hover .solution-arrow { gap: 14px; }
 
   /* ============= WORK ============= */
-  .work-section { background: var(--color-surface); }
+  .work-section { background: transparent; }
 
   .work-grid {
     display: grid;
@@ -764,7 +779,7 @@ import Layout from '../layouts/Layout.astro';
   }
 
   /* ============= DIVISION ============= */
-  .division-section { background: #ffffff; }
+  .division-section { background: transparent; }
 
   .division-list {
     display: flex;
@@ -836,7 +851,7 @@ import Layout from '../layouts/Layout.astro';
 
   /* ============= MESSAGE ============= */
   .message-section {
-    background: var(--color-surface);
+    background: transparent;
     overflow: hidden;
   }
 
@@ -916,7 +931,7 @@ import Layout from '../layouts/Layout.astro';
   .message-text > div:last-child { margin-top: 12px; }
 
   /* ============= NEWS ============= */
-  .news-section { background: #ffffff; }
+  .news-section { background: transparent; }
 
   .news-all-link {
     padding: 10px 22px;
@@ -1052,6 +1067,7 @@ import Layout from '../layouts/Layout.astro';
   /* ============= RESPONSIVE ============= */
   @media (max-width: 1024px) {
     .work-grid { grid-template-columns: repeat(2, 1fr); }
+    .strengths-grid { grid-template-columns: 1fr; gap: 20px; }
     .section-header-2col {
       grid-template-columns: 1fr;
       gap: 20px;
@@ -1063,7 +1079,9 @@ import Layout from '../layouts/Layout.astro';
   @media (max-width: 768px) {
     .hero-content { padding-bottom: 60px; }
     .hero-heading-ja { font-size: clamp(2rem, 8vw, 2.8rem); }
+    .strength-card { padding: 32px 26px; }
     .solution-grid { grid-template-columns: 1fr; }
+    .solution-card { padding: 32px 24px; }
     .work-grid { grid-template-columns: 1fr; }
     .division-row {
       grid-template-columns: 1fr;
