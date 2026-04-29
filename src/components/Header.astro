@@ -16,7 +16,7 @@ const pathname = Astro.url.pathname;
       <span class="logo-icon" aria-hidden="true">
         <img src="/logo.png" alt="RANARIUM" class="logo-img" />
       </span>
-      <span class="logo-text">RANARIUM</span>
+      <span class="logo-text">RAN<span class="logo-ai">A</span>R<span class="logo-ai">I</span>UM</span>
     </a>
 
     <!-- Desktop nav -->
@@ -117,6 +117,10 @@ const pathname = Astro.url.pathname;
     letter-spacing: 0.12em;
     color: var(--color-ink);
     text-transform: uppercase;
+  }
+
+  .logo-text .logo-ai {
+    color: #5DA0FF;
   }
 
   /* Desktop nav */

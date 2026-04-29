@@ -32,7 +32,7 @@ const links = [
         <div class="footer-brand">
           <a href="/" class="footer-logo">
             <img src="/logo.png" alt="RANARIUM" class="footer-logo-img" />
-            <span>RANARIUM</span>
+            <span>RAN<span class="footer-logo-ai">A</span>R<span class="footer-logo-ai">I</span>UM</span>
           </a>
           <p class="footer-tagline">
             AI・ITで、<br/>跳躍する事業を育てる。
@@ -109,23 +109,27 @@ const links = [
   .footer-logo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     color: var(--color-ink);
     font-family: var(--font-body);
-    font-size: 1rem;
+    font-size: 1.15rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     text-decoration: none;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
   }
 
   .footer-logo-img {
-    width: 32px;
-    height: 32px;
+    width: 44px;
+    height: 44px;
     object-fit: contain;
     transform-origin: 50% 100%;
     will-change: transform;
+  }
+
+  .footer-logo-ai {
+    color: #5DA0FF;
   }
 
   .footer-logo:hover .footer-logo-img {
