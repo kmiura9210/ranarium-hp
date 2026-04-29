@@ -1,63 +1,12 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-
-const articles = [
-  {
-    date: '2025-03-28',
-    dateDisplay: '2025.03.28',
-    cat: 'プレスリリース',
-    title: '株式会社RANARIUMがAI活用コンサルティングサービスを正式リリース',
-    desc: '本日より、中小〜大手企業向けのAI活用コンサルティングサービスを正式提供開始しました。AI戦略立案からPoC、実装・運用まで一気通貫で対応します。',
-  },
-  {
-    date: '2025-03-15',
-    dateDisplay: '2025.03.15',
-    cat: 'イベント',
-    title: '代表取締役による「中小企業のためのDX入門」セミナーを開催しました',
-    desc: '3月15日（土）、東京都内にてDX入門セミナーを開催し、30名を超える経営者・担当者様にご参加いただきました。',
-  },
-  {
-    date: '2025-02-20',
-    dateDisplay: '2025.02.20',
-    cat: 'プレスリリース',
-    title: '複数の製造業クライアント向けAI品質管理システムの導入実績を公開',
-    desc: '3社の製造業クライアントへのAI品質管理システム導入実績を公開しました。不良品検出率が平均35%改善しています。',
-  },
-  {
-    date: '2025-02-05',
-    dateDisplay: '2025.02.05',
-    cat: 'お知らせ',
-    title: '株式会社RANARIUMのコーポレートサイトをリニューアルしました',
-    desc: '企業情報やサービス内容をより分かりやすくお伝えするため、コーポレートサイトを全面リニューアルしました。',
-  },
-  {
-    date: '2025-01-20',
-    dateDisplay: '2025.01.20',
-    cat: 'お知らせ',
-    title: '2025年の事業展開方針を公表。AI・DX支援の強化を予定',
-    desc: '2025年度は特にAI活用支援とDXコンサルティング領域の強化を図ります。新たなパートナー企業との協業も計画中です。',
-  },
-  {
-    date: '2024-12-01',
-    dateDisplay: '2024.12.01',
-    cat: 'プレスリリース',
-    title: '株式会社RANARIUM 設立のお知らせ',
-    desc: 'この度、IT・AIコンサルティング、システム開発を主軸とする株式会社RANARIUMを設立しました。社名の由来やミッションについてご紹介します。',
-  },
-];
-
-const cats = ['すべて', 'プレスリリース', 'お知らせ', 'イベント'];
+import { articles, categories } from '../../data/news';
 ---
 
 <Layout title="お知らせ" description="株式会社RANARIUMのお知らせ・プレスリリース一覧。最新情報はこちらでご確認ください。">
 
   <!-- Page Hero -->
   <section class="page-hero">
-    <div class="hero-bubbles" aria-hidden="true">
-      <div class="bubble" style="width:14px;height:14px;left:10%;--duration:10s;--delay:0s;--sway:12px;"></div>
-      <div class="bubble" style="width:8px;height:8px;left:50%;--duration:13s;--delay:2s;--sway:-8px;"></div>
-      <div class="bubble" style="width:18px;height:18px;left:80%;--duration:9s;--delay:1s;--sway:14px;"></div>
-    </div>
     <div class="container">
       <nav class="breadcrumb" aria-label="パンくずリスト">
         <a href="/">ホーム</a><span>/</span><span>お知らせ</span>
@@ -76,7 +25,7 @@ const cats = ['すべて', 'プレスリリース', 'お知らせ', 'イベン�
 
       <!-- Category filter -->
       <div class="cat-filter" data-animate>
-        {cats.map(c => (
+        {categories.map(c => (
           <button
             class={`cat-btn ${c === 'すべて' ? 'active' : ''}`}
             data-cat={c}
@@ -89,8 +38,9 @@ const cats = ['すべて', 'プレスリリース', 'お知らせ', 'イベン�
       <!-- Articles -->
       <div class="articles-list" id="articles-list">
         {articles.map((a, i) => (
-          <article
-            class="article-card glass-card"
+          <a
+            href={`/news/${a.slug}`}
+            class="article-card"
             data-animate
             data-cat={a.cat}
             style={`animation-delay: ${i * 0.07}s`}
@@ -109,7 +59,7 @@ const cats = ['すべて', 'プレスリリース', 'お知らせ', 'イベン�
                 </svg>
               </span>
             </div>
-          </article>
+          </a>
         ))}
       </div>
 
@@ -123,10 +73,8 @@ const cats = ['すべて', 'プレスリリース', 'お知らせ', 'イベン�
     padding: 140px 0 80px;
     position: relative;
     overflow: hidden;
-    background: radial-gradient(ellipse 60% 50% at 60% 40%, rgba(0,200,150,0.06) 0%, transparent 70%), var(--color-bg);
+    background: transparent;
   }
-
-  .hero-bubbles { position: absolute; inset: 0; pointer-events: none; }
 
   .breadcrumb {
     display: flex;
@@ -136,58 +84,57 @@ const cats = ['すべて', 'プレスリリース', 'お知らせ', 'イベン�
     color: var(--color-ink-muted);
     margin-bottom: 32px;
   }
-
   .breadcrumb a { color: var(--color-ink-muted); text-decoration: none; transition: color 0.2s; }
-  .breadcrumb a:hover { color: var(--color-accent-deep); }
+  .breadcrumb a:hover { color: var(--color-ink); }
 
-  .page-hero-inner { max-width: 600px; }
+  .page-hero-inner { max-width: 720px; }
 
   .page-title {
     font-size: clamp(2.2rem, 4vw, 3.2rem);
-    font-weight: 800;
+    font-weight: 700;
     margin-bottom: 16px;
+    letter-spacing: -0.02em;
   }
 
   .page-subtitle {
     font-size: 1rem;
     color: var(--color-ink-soft);
-    line-height: 1.8;
+    line-height: 1.95;
   }
 
   /* News list */
-  .news-list-section { background: var(--color-bg); }
+  .news-list-section { background: transparent; }
 
   .cat-filter {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 8px;
     margin-bottom: 40px;
   }
 
   .cat-btn {
     padding: 8px 20px;
-    border-radius: 999px;
-    font-family: var(--font-display);
-    font-size: 0.83rem;
+    border-radius: 2px;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
     font-weight: 600;
-    border: 2px solid var(--color-border);
+    border: 1px solid var(--color-border);
     background: transparent;
     color: var(--color-ink-soft);
     cursor: pointer;
     transition: all 0.2s ease;
+    letter-spacing: 0.04em;
   }
 
   .cat-btn:hover {
-    border-color: var(--color-accent);
-    color: var(--color-accent-deep);
-    background: rgba(0,200,150,0.04);
+    border-color: var(--color-ink-soft);
+    color: var(--color-ink);
   }
 
   .cat-btn.active {
-    background: var(--color-accent);
-    border-color: var(--color-accent);
-    color: white;
-    box-shadow: 0 4px 14px rgba(0,200,150,0.3);
+    background: var(--color-ink);
+    border-color: var(--color-ink);
+    color: #ffffff;
   }
 
   .articles-list {
@@ -198,13 +145,21 @@ const cats = ['すべて', 'プレスリリース', 'お知らせ', 'イベン�
 
   .article-card {
     display: block;
+    text-decoration: none;
+    color: inherit;
     cursor: pointer;
-    transition: all 0.3s ease;
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s, border-color 0.35s;
   }
 
-  .article-card[data-hidden] {
-    display: none;
+  .article-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-ink-soft);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
   }
+
+  .article-card[data-hidden] { display: none; }
 
   .article-inner {
     padding: 32px 28px;
@@ -221,29 +176,28 @@ const cats = ['すべて', 'プレスリリース', 'お知らせ', 'イベン�
   }
 
   .article-date {
-    font-family: var(--font-display);
+    font-family: var(--font-body);
     font-size: 0.8rem;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--color-ink-muted);
-    letter-spacing: 0.03em;
+    letter-spacing: 0.06em;
   }
 
   .article-title {
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 700;
     line-height: 1.6;
     color: var(--color-ink);
     transition: color 0.2s;
+    letter-spacing: -0.01em;
   }
 
-  .article-card:hover .article-title {
-    color: var(--color-accent-deep);
-  }
+  .article-card:hover .article-title { color: var(--color-ink-soft); }
 
   .article-desc {
     font-size: 0.88rem;
     color: var(--color-ink-soft);
-    line-height: 1.75;
+    line-height: 1.85;
     flex: 1;
   }
 
@@ -251,14 +205,15 @@ const cats = ['すべて', 'プレスリリース', 'お知らせ', 'イベン�
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--color-accent-deep);
-    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    letter-spacing: 0.08em;
     transition: gap 0.2s;
   }
 
-  .article-card:hover .article-read-more { gap: 10px; }
+  .article-card:hover .article-read-more { gap: 12px; }
 
   @media (max-width: 640px) {
     .articles-list { grid-template-columns: 1fr; }

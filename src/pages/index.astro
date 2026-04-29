@@ -309,9 +309,10 @@ import Layout from '../layouts/Layout.astro';
             date: '2026.04.27',
             cat: 'お知らせ',
             title: '法人設立 および ホームページ開設 のお知らせ',
+            href: '/news/launch',
           },
         ].map(n => (
-          <a href="/news" class="news-card">
+          <a href={n.href ?? '/news'} class="news-card">
             <div class="news-card-inner">
               <div class="news-meta">
                 <time class="news-date">{n.date}</time>

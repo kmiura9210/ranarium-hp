@@ -1,0 +1,275 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { articles } from '../../data/news';
+
+export function getStaticPaths() {
+  return articles.map(a => ({
+    params: { slug: a.slug },
+    props: { article: a },
+  }));
+}
+
+const { article } = Astro.props;
+---
+
+<Layout title={article.title} description={article.desc}>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="/">ホーム</a>
+        <span>/</span>
+        <a href="/news">お知らせ</a>
+        <span>/</span>
+        <span class="breadcrumb-current">{article.title}</span>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Article -->
+  <article class="article-detail">
+    <div class="container article-container">
+      <header class="article-header" data-animate>
+        <div class="article-meta-row">
+          <time datetime={article.date} class="article-date">{article.dateDisplay}</time>
+          <span class="tag">{article.cat}</span>
+        </div>
+        <h1 class="article-detail-title">{article.title}</h1>
+      </header>
+
+      <div class="article-divider"></div>
+
+      <div class="article-body" data-animate set:html={article.body}></div>
+
+      <div class="article-footer" data-animate>
+        <a href="/news" class="back-link">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+            <path d="M13 8H3M8 3L3 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          お知らせ一覧へ
+        </a>
+      </div>
+    </div>
+  </article>
+
+  <!-- CTA -->
+  <section class="section cta-mini">
+    <div class="container cta-mini-inner" data-animate>
+      <p>共に跳躍するパートナーを、お探しではないですか？</p>
+      <a href="/contact" class="btn-primary">
+        お問い合わせ
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .page-hero {
+    padding: 120px 0 24px;
+    position: relative;
+    background: transparent;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: var(--color-ink-muted);
+    flex-wrap: wrap;
+  }
+  .breadcrumb a { color: var(--color-ink-muted); text-decoration: none; transition: color 0.2s; }
+  .breadcrumb a:hover { color: var(--color-ink); }
+  .breadcrumb-current {
+    color: var(--color-ink);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 280px;
+  }
+
+  /* Article */
+  .article-detail {
+    padding: 48px 0 96px;
+    background: transparent;
+  }
+
+  .article-container {
+    max-width: 760px;
+  }
+
+  .article-header { margin-bottom: 32px; }
+
+  .article-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .article-date {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-ink-muted);
+    letter-spacing: 0.08em;
+  }
+
+  .article-detail-title {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    line-height: 1.45;
+    color: var(--color-ink);
+    letter-spacing: -0.02em;
+  }
+
+  .article-divider {
+    height: 1px;
+    background: var(--color-border);
+    margin-bottom: 48px;
+  }
+
+  /* Article body — global so set:html content gets styled */
+  .article-body :global(p) {
+    font-size: 0.96rem;
+    line-height: 2;
+    color: var(--color-ink-soft);
+    margin-bottom: 24px;
+  }
+
+  .article-body :global(h2) {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    margin: 48px 0 18px;
+    letter-spacing: -0.01em;
+    padding-left: 14px;
+    border-left: 3px solid var(--color-ink);
+  }
+
+  .article-body :global(h3) {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    margin: 32px 0 14px;
+    letter-spacing: -0.01em;
+  }
+
+  .article-body :global(strong) {
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+
+  .article-body :global(em) {
+    font-style: italic;
+    color: var(--color-ink);
+    background: linear-gradient(transparent 65%, rgba(123, 183, 240, 0.25) 65%);
+    padding: 0 2px;
+  }
+
+  .article-body :global(ul),
+  .article-body :global(ol) {
+    margin: 0 0 24px;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .article-body :global(ul li) {
+    position: relative;
+    padding-left: 22px;
+    font-size: 0.95rem;
+    line-height: 1.95;
+    color: var(--color-ink-soft);
+    margin-bottom: 10px;
+  }
+  .article-body :global(ul li::before) {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 10px;
+    height: 1px;
+    background: var(--color-ink);
+  }
+
+  .article-body :global(.news-signature) {
+    margin-top: 48px;
+    padding-top: 28px;
+    border-top: 1px solid var(--color-border);
+    font-size: 0.9rem;
+    line-height: 1.95;
+    color: var(--color-ink-soft);
+    text-align: right;
+  }
+
+  /* Footer */
+  .article-footer {
+    margin-top: 64px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border: 1px solid var(--color-border);
+    background: transparent;
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+  .back-link:hover {
+    background: var(--color-ink);
+    color: #ffffff;
+    border-color: var(--color-ink);
+  }
+
+  /* CTA mini */
+  .cta-mini { background: transparent; }
+
+  .cta-mini-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 44px 48px;
+    background: var(--color-ink);
+    border-radius: 4px;
+  }
+  .cta-mini-inner p {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+  }
+  .cta-mini-inner .btn-primary {
+    background: #ffffff;
+    color: var(--color-ink);
+  }
+  .cta-mini-inner .btn-primary:hover {
+    background: var(--color-surface);
+    color: var(--color-ink);
+  }
+
+  @media (max-width: 640px) {
+    .article-detail { padding: 32px 0 64px; }
+    .breadcrumb-current { max-width: 180px; }
+    .cta-mini-inner {
+      flex-direction: column;
+      text-align: center;
+      padding: 32px 24px;
+    }
+  }
+</style>

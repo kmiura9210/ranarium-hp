@@ -5,10 +5,9 @@ const links = [
   {
     heading: 'サービス',
     items: [
-      { label: 'AIコンサルティング', href: '/services#ai' },
-      { label: 'システム開発',       href: '/services#dev' },
-      { label: 'DXソリューション',   href: '/services#dx'  },
-      { label: 'データ分析',         href: '/services#data' },
+      { label: '新規事業開発',         href: '/services#biz' },
+      { label: 'プロダクト開発PdM',    href: '/services#pdm' },
+      { label: 'AIコンサルティング',   href: '/services#ai'  },
     ],
   },
   {
@@ -36,7 +35,7 @@ const links = [
             <span>RANARIUM</span>
           </a>
           <p class="footer-tagline">
-            ITとAIで、あなたの<br/>ビジネスに新たな生態系を。
+            AI・ITで、<br/>跳躍する事業を育てる。
           </p>
           <a href="/contact" class="btn-primary footer-cta">
             お問い合わせ
@@ -64,12 +63,6 @@ const links = [
           <ul class="footer-contact">
             <li>
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                <path d="M8 1C5.24 1 3 3.24 3 6c0 4 5 9 5 9s5-5 5-9c0-2.76-2.24-5-5-5zm0 6.5A1.5 1.5 0 1 1 8 4a1.5 1.5 0 0 1 0 3.5z" fill="currentColor"/>
-              </svg>
-              東京都〇〇区〇〇 X-X-X
-            </li>
-            <li>
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
                 <path d="M2 4h12v8a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4zm0 0l6 5 6-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
               </svg>
               info@ranarium.co.jp
@@ -83,7 +76,6 @@ const links = [
         <p class="footer-copy">&copy; {year} 株式会社RANARIUM. All Rights Reserved.</p>
         <div class="footer-bottom-links">
           <a href="/privacy">プライバシーポリシー</a>
-          <a href="/terms">利用規約</a>
         </div>
       </div>
     </div>
@@ -132,6 +124,12 @@ const links = [
     width: 32px;
     height: 32px;
     object-fit: contain;
+    transform-origin: 50% 100%;
+    will-change: transform;
+  }
+
+  .footer-logo:hover .footer-logo-img {
+    animation: frog-jump-soft 0.7s cubic-bezier(0.34, 1.4, 0.64, 1) 1;
   }
 
   .footer-tagline {

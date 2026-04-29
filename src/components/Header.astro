@@ -96,17 +96,18 @@ const pathname = Astro.url.pathname;
   .logo-icon {
     display: flex;
     align-items: center;
-    transition: transform 0.3s ease;
   }
 
   .logo-img {
     width: 52px;
     height: 52px;
     object-fit: contain;
+    transform-origin: 50% 100%;
+    will-change: transform;
   }
 
-  .logo:hover .logo-icon {
-    transform: scale(1.1) rotate(-4deg);
+  .logo:hover .logo-img {
+    animation: frog-jump 0.85s cubic-bezier(0.34, 1.4, 0.64, 1) 1;
   }
 
   .logo-text {
