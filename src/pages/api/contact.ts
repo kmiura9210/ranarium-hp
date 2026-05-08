@@ -53,7 +53,12 @@ const json = (data: unknown, status = 200) =>
 
 export const POST: APIRoute = async ({ request, locals }) => {
   // Cloudflare Workers の env は locals.runtime.env でアクセス
-  const env = (locals as any)?.runtime?.env ?? {};
+  const runtime = (locals as any)?.runtime;
+  const env = runtime?.env ?? {};
+
+  // 診断用ログ (Cloudflare Real-time Logs で確認可能)
+  console.log('[contact] runtime present:', !!runtime);
+  console.log('[contact] env keys:', Object.keys(env));
 
   // ---- 1. リクエストの取り出し ----
   let payload: ContactPayload;
@@ -116,8 +121,8 @@ export const POST: APIRoute = async ({ request, locals }) => {
   // ---- 4. 環境変数チェック ----
   const apiKey = env.RESEND_API_KEY;
   if (!apiKey) {
-    console.error('[contact] RESEND_API_KEY is not configured');
-    return json({ error: 'server misconfigured' }, 500);
+    console.error('[contact] RESEND_API_KEY is not configured. env keys:', Object.keys(env));
+    return json({ error: 'server misconfigured', detail: 'RESEND_API_KEY missing' }, 500);
   }
 
   // ---- 5. メール本文の組み立て ----
