@@ -125,6 +125,16 @@ import Layout from '../layouts/Layout.astro';
               </label>
             </div>
 
+            <!-- Honeypot (botトラップ・人間には見えない) -->
+            <div class="hp-field" aria-hidden="true">
+              <label>
+                Website
+                <input type="text" name="website" tabindex="-1" autocomplete="off" />
+              </label>
+            </div>
+
+            <p class="form-error" id="form-error" role="alert"></p>
+
             <button type="submit" class="btn-primary submit-btn" id="submit-btn">
               送信する
               <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
@@ -311,6 +321,35 @@ import Layout from '../layouts/Layout.astro';
     margin-top: 4px;
   }
 
+  .submit-btn[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* Honeypot — visually hide but keep accessible to bots */
+  .hp-field {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  /* Error message */
+  .form-error {
+    display: none;
+    font-size: 0.85rem;
+    color: #c0392b;
+    background: rgba(192, 57, 43, 0.06);
+    border: 1px solid rgba(192, 57, 43, 0.2);
+    padding: 12px 16px;
+    border-radius: 2px;
+    line-height: 1.7;
+  }
+  .form-error.visible { display: block; }
+
   /* Success */
   .form-success {
     display: none;
@@ -348,10 +387,21 @@ import Layout from '../layouts/Layout.astro';
 <script>
   const form = document.getElementById('contact-form') as HTMLFormElement;
   const success = document.getElementById('form-success')!;
+  const errorBox = document.getElementById('form-error') as HTMLElement;
   const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+
+  const showError = (message: string) => {
+    errorBox.textContent = message;
+    errorBox.classList.add('visible');
+  };
+  const clearError = () => {
+    errorBox.textContent = '';
+    errorBox.classList.remove('visible');
+  };
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
+    clearError();
 
     if (!form.checkValidity()) {
       form.reportValidity();
@@ -360,12 +410,39 @@ import Layout from '../layouts/Layout.astro';
 
     // Loading state
     submitBtn.disabled = true;
-    submitBtn.textContent = '送信中...';
+    const originalLabel = submitBtn.innerHTML;
+    submitBtn.textContent = '送信中…';
 
-    // Simulate send (replace with actual API endpoint)
-    await new Promise(resolve => setTimeout(resolve, 1200));
+    try {
+      const data = Object.fromEntries(new FormData(form));
+      // checkbox `privacy` は ON のときだけ FormData に乗るので、明示的に bool 化
+      data.privacy = form.querySelector<HTMLInputElement>('#privacy')!.checked
+        ? 'true'
+        : 'false';
 
-    form.style.display = 'none';
-    success.classList.add('visible');
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) {
+        let detail = '';
+        try {
+          const body = await res.json() as { details?: string[]; error?: string };
+          if (body?.details?.length) detail = body.details.join(' / ');
+          else if (body?.error) detail = body.error;
+        } catch (_) { /* noop */ }
+        throw new Error(detail || `送信に失敗しました (HTTP ${res.status})`);
+      }
+
+      form.style.display = 'none';
+      success.classList.add('visible');
+    } catch (err) {
+      const message = err instanceof Error ? err.message : '送信に失敗しました。時間をおいて再度お試しください。';
+      showError(message);
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalLabel;
+    }
   });
 </script>
