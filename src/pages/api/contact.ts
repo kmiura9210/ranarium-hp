@@ -1,21 +1,20 @@
 /**
  * POST /api/contact
  *
- * Cloudflare Pages Function — お問い合わせフォーム送信エンドポイント
+ * Astro API endpoint — お問い合わせフォーム送信
+ * (Cloudflare Workers 上で実行)
  *
- * 環境変数 (Cloudflare Pages の Settings → Environment variables で設定):
- *   - RESEND_API_KEY  : Resend の API キー (re_xxxxxxxx)
+ * 環境変数 (Cloudflare Workers の Settings → Variables/Secrets で設定):
+ *   - RESEND_API_KEY  : Resend の API キー (re_xxxxxxxx) ※ Secret 推奨
  *   - CONTACT_TO      : 送信先メールアドレス (例: info@rana-rium.com)
  *   - CONTACT_FROM    : 差出人 (例: "RANARIUM <noreply@rana-rium.com>")
  *                       Resend で domain verification を済ませた送信元を指定
  *                       未設定なら Resend のテスト用 onboarding@resend.dev を使用
  */
 
-interface Env {
-  RESEND_API_KEY: string;
-  CONTACT_TO?: string;
-  CONTACT_FROM?: string;
-}
+import type { APIRoute } from 'astro';
+
+export const prerender = false;
 
 interface ContactPayload {
   name?: string;
@@ -46,38 +45,37 @@ const escapeHtml = (s: string) =>
 
 const isValidEmail = (s: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
 
-const json = (data: unknown, init: number | ResponseInit = 200) => {
-  const responseInit: ResponseInit =
-    typeof init === 'number' ? { status: init } : init;
-  return new Response(JSON.stringify(data), {
-    ...responseInit,
-    headers: {
-      'Content-Type': 'application/json; charset=utf-8',
-      ...(responseInit.headers || {}),
-    },
+const json = (data: unknown, status = 200) =>
+  new Response(JSON.stringify(data), {
+    status,
+    headers: { 'Content-Type': 'application/json; charset=utf-8' },
   });
-};
 
-export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
+export const POST: APIRoute = async ({ request, locals }) => {
+  // Cloudflare Workers の env は locals.runtime.env でアクセス
+  const env = (locals as any)?.runtime?.env ?? {};
+
   // ---- 1. リクエストの取り出し ----
   let payload: ContactPayload;
   try {
     const contentType = request.headers.get('content-type') ?? '';
     if (contentType.includes('application/json')) {
       payload = await request.json();
-    } else if (contentType.includes('application/x-www-form-urlencoded') || contentType.includes('multipart/form-data')) {
+    } else if (
+      contentType.includes('application/x-www-form-urlencoded') ||
+      contentType.includes('multipart/form-data')
+    ) {
       const form = await request.formData();
       payload = Object.fromEntries(form) as ContactPayload;
     } else {
       return json({ error: 'unsupported content-type' }, 415);
     }
-  } catch (e) {
+  } catch (_) {
     return json({ error: 'invalid request body' }, 400);
   }
 
-  // ---- 2. Honeypot チェック (ボット対策) ----
+  // ---- 2. Honeypot チェック ----
   if (payload.website && String(payload.website).trim() !== '') {
-    // ボットには成功したフリをして黙ってドロップ
     return json({ ok: true }, 200);
   }
 
@@ -88,7 +86,10 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   const phone = (payload.phone ?? '').toString().trim();
   const service = (payload.service ?? '').toString().trim();
   const message = (payload.message ?? '').toString().trim();
-  const privacy = payload.privacy === true || payload.privacy === 'on' || payload.privacy === 'true';
+  const privacy =
+    payload.privacy === true ||
+    payload.privacy === 'on' ||
+    payload.privacy === 'true';
 
   const errors: string[] = [];
   if (!name) errors.push('お名前は必須です');
@@ -98,7 +99,13 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   if (!message) errors.push('お問い合わせ内容は必須です');
   if (!privacy) errors.push('プライバシーポリシーへの同意が必要です');
 
-  if (name.length > 100 || company.length > 200 || email.length > 200 || phone.length > 50 || message.length > 5000) {
+  if (
+    name.length > 100 ||
+    company.length > 200 ||
+    email.length > 200 ||
+    phone.length > 50 ||
+    message.length > 5000
+  ) {
     errors.push('入力文字数が上限を超えています');
   }
 
@@ -107,7 +114,8 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   }
 
   // ---- 4. 環境変数チェック ----
-  if (!env.RESEND_API_KEY) {
+  const apiKey = env.RESEND_API_KEY;
+  if (!apiKey) {
     console.error('[contact] RESEND_API_KEY is not configured');
     return json({ error: 'server misconfigured' }, 500);
   }
@@ -115,7 +123,6 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   // ---- 5. メール本文の組み立て ----
   const serviceLabel = SERVICE_LABEL[service] ?? '未選択';
   const submittedAt = new Date().toISOString();
-
   const subject = `【お問い合わせ】${name}様 / ${company}`;
 
   const textBody = [
@@ -162,7 +169,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${env.RESEND_API_KEY}`,
+        Authorization: `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
