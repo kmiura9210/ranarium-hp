@@ -60,8 +60,7 @@ export const articles: NewsArticle[] = [
 
       <p class="news-signature">
         2026年4月27日<br/>
-        株式会社RANARIUM<br/>
-        代表取締役 三浦 耕樹
+        株式会社RANARIUM
       </p>
     `,
   },
