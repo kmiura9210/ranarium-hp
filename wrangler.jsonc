@@ -7,6 +7,15 @@
 		"directory": "./dist",
 		"binding": "ASSETS"
 	},
+	// 平文の環境変数はここが正本。`wrangler deploy` は vars を丸ごと上書きするため、
+	// ここに書かれていない平文変数はデプロイのたびに削除される
+	// (実際に CONTACT_TO / CONTACT_FROM が消えて問い合わせフォームが停止した)。
+	// 平文でよい値は必ずここに書き、秘匿値 (RESEND_API_KEY) は Secret で登録する
+	// — Secret はデプロイの影響を受けない。
+	"vars": {
+		"CONTACT_TO": "info@rana-rium.com",
+		"CONTACT_FROM": "RANARIUM <noreply@rana-rium.com>"
+	},
 	"observability": {
 		"enabled": true
 	}
