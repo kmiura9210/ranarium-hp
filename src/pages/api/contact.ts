@@ -15,6 +15,7 @@
 import type { APIRoute } from 'astro';
 // Astro v6 + @astrojs/cloudflare では `cloudflare:workers` 経由で env を取得
 import { env } from 'cloudflare:workers';
+import { alertMailFailure } from '../../lib/alert';
 
 export const prerender = false;
 
@@ -22,6 +23,8 @@ type ContactEnv = {
   RESEND_API_KEY?: string;
   CONTACT_TO?: string;
   CONTACT_FROM?: string;
+  /** 送信失敗を知らせる管理者アドレス。未設定なら alert.ts のフォールバック先 */
+  ALERT_TO?: string;
 };
 
 interface ContactPayload {
@@ -175,6 +178,17 @@ export const POST: APIRoute = async ({ request }) => {
   const to = cfEnv.CONTACT_TO ?? 'info@rana-rium.com';
   const from = cfEnv.CONTACT_FROM ?? 'onboarding@resend.dev';
 
+  // 送信が失われても問い合わせ内容が手元に残るよう、アラートに載せる中身
+  const lostSubmission = {
+    'お名前': name,
+    '会社名': company,
+    'メール': email,
+    '電話番号': phone,
+    'サービス': serviceLabel,
+    'お問い合わせ内容': message,
+  };
+
+  let failure: { status: number | null; detail: string } | null = null;
   try {
     const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
@@ -195,10 +209,21 @@ export const POST: APIRoute = async ({ request }) => {
     if (!res.ok) {
       const detail = await res.text();
       console.error('[contact] resend failed:', res.status, detail);
-      return json({ error: 'failed to send email' }, 502);
+      failure = { status: res.status, detail };
     }
   } catch (err) {
-    console.error('[contact] resend error:', err);
+    const detail = err instanceof Error ? err.message : String(err);
+    console.error('[contact] resend error:', detail);
+    failure = { status: null, detail };
+  }
+
+  if (failure) {
+    await alertMailFailure(apiKey, cfEnv.ALERT_TO, {
+      source: 'RANARIUM お問い合わせフォーム',
+      status: failure.status,
+      detail: failure.detail,
+      lostSubmission,
+    });
     return json({ error: 'failed to send email' }, 502);
   }
 
