@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { articles } from '../data/news';
 ---
 
 <Layout title="トップ">
@@ -319,18 +320,11 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <div data-animate>
-        {[
-          {
-            date: '2026.04.27',
-            cat: 'お知らせ',
-            title: '法人設立 および ホームページ開設 のお知らせ',
-            href: '/news/launch',
-          },
-        ].map(n => (
-          <a href={n.href ?? '/news'} class="news-card">
+        {articles.slice(0, 3).map(n => (
+          <a href={`/news/${n.slug}`} class="news-card">
             <div class="news-card-inner">
               <div class="news-meta">
-                <time class="news-date">{n.date}</time>
+                <time datetime={n.date} class="news-date">{n.dateDisplay}</time>
                 <span class="tag">{n.cat}</span>
               </div>
               <p class="news-title">{n.title}</p>
