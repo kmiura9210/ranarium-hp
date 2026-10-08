@@ -10,6 +10,35 @@ export type NewsArticle = {
 
 export const articles: NewsArticle[] = [
   {
+    slug: 'lakka-operation-start',
+    date: '2026-10-08',
+    dateDisplay: '2026.10.08',
+    cat: 'お知らせ',
+    title: 'ヘッドスパ&イヤーエステLakkaの運営開始のお知らせ',
+    desc: 'M&Aによる事業譲受を通じて、東京・赤坂の「ヘッドスパ&イヤーエステLakka」の運営を開始しました。店舗経営で得た経験を、事業開発・運営改善の支援にも活かしてまいります。',
+    body: `
+      <p>
+        このたび、株式会社RANARIUMは、<strong>M&amp;Aによる事業譲受</strong>を通じて、
+        東京・赤坂の<strong>「ヘッドスパ&amp;イヤーエステLakka」</strong>の運営を開始しましたのでお知らせいたします。
+      </p>
+      <p>
+        お客様に心地よい時間をお届けできるよう、日々のサービスと店舗運営の改善に取り組んでまいります。
+      </p>
+      <h2>自ら事業を育てる経験を、お客様の事業へ</h2>
+      <p>
+        集客、接客、日々のオペレーション、収益管理まで、自ら意思決定し、その結果に向き合う。
+        店舗経営の現場で得た経験を、お客様への事業開発・運営改善の支援にも活かしてまいります。
+      </p>
+      <p>
+        今後とも、RANARIUMおよびLakkaをよろしくお願い申し上げます。
+      </p>
+      <p class="news-signature">
+        2026年10月8日<br/>
+        株式会社RANARIUM
+      </p>
+    `,
+  },
+  {
     slug: 'launch',
     date: '2026-04-27',
     dateDisplay: '2026.04.27',
