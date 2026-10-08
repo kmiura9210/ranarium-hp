@@ -1,0 +1,27 @@
+{
+  "name": "ranarium-hp-dev",
+  "account_id": "d5819395b01c4018702a103faa17a956",
+  "main": "@astrojs/cloudflare/entrypoints/server",
+  "compatibility_date": "2026-05-08",
+  "compatibility_flags": [
+    "global_fetch_strictly_public"
+  ],
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS"
+  },
+  "routes": [
+    {
+      "pattern": "dev.rana-rium.com",
+      "custom_domain": true
+    }
+  ],
+  "workers_dev": true,
+  "vars": {
+    "SITE_ENV": "development",
+    "CONTACT_MODE": "test"
+  },
+  "observability": {
+    "enabled": true
+  }
+}

@@ -11,7 +11,10 @@
     "preview": "npm run build && wrangler dev",
     "astro": "astro",
     "generate-types": "wrangler types",
-    "deploy": "npm run build && wrangler deploy"
+    "deploy": "npm run build && wrangler deploy",
+    "build:dev": "PUBLIC_SITE_ENV=development astro build",
+    "preview:dev": "npm run build:dev && wrangler dev",
+    "deploy:dev": "npm run build:dev && wrangler deploy"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^13.5.0",

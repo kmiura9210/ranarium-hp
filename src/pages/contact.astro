@@ -436,6 +436,11 @@ import Layout from '../layouts/Layout.astro';
         throw new Error(detail || `送信に失敗しました (HTTP ${res.status})`);
       }
 
+      const result = await res.json() as { test?: boolean };
+      if (result.test) {
+        success.querySelector('h3')!.textContent = 'テスト送信が完了しました';
+        success.querySelector('p')!.textContent = '開発環境のため、メールは送信されていません。';
+      }
       form.style.display = 'none';
       success.classList.add('visible');
     } catch (err) {

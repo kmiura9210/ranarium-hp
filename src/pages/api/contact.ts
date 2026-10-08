@@ -20,6 +20,8 @@ import { alertMailFailure } from '../../lib/alert';
 export const prerender = false;
 
 type ContactEnv = {
+  SITE_ENV?: string;
+  CONTACT_MODE?: string;
   RESEND_API_KEY?: string;
   CONTACT_TO?: string;
   CONTACT_FROM?: string;
@@ -124,6 +126,11 @@ export const POST: APIRoute = async ({ request }) => {
 
   if (errors.length > 0) {
     return json({ error: 'validation failed', details: errors }, 400);
+  }
+
+  // 開発環境では入力検証まで実行し、メールと管理者通知は送らない。
+  if (cfEnv.SITE_ENV === 'development' && cfEnv.CONTACT_MODE === 'test') {
+    return json({ ok: true, test: true });
   }
 
   // ---- 4. 環境変数チェック ----
