@@ -143,14 +143,16 @@ import Layout from '../layouts/Layout.astro';
           },
           {
             num: '03',
-            title: '事業者として、リスクを取る。',
-            desc: '私たち自身も事業を立ち上げ、運営しています。資本も時間もリスクも投じる中で得た「現場の知」を、お客様の現場へ。理論ではなく、実装の知見をお届けします。',
+            title: '自ら経営し、現場で確かめる。',
+            desc: '私たちは、東京・赤坂で「Lakka」を運営しています。集客、接客、日々のオペレーション、収益管理まで、自ら意思決定し、その結果に向き合っています。',
+            detail: '自社の店舗経営で得た経験を、お客様への支援にも。経営者の視点と現場の実感をもとに、実行できる施策を共に考え、改善まで伴走します。',
           },
         ].map(s => (
           <article class="strength-card">
             <div class="strength-num">{s.num}</div>
             <h3 class="strength-title">{s.title}</h3>
             <p class="strength-desc">{s.desc}</p>
+            {s.detail && <p class="strength-desc">{s.detail}</p>}
           </article>
         ))}
       </div>
@@ -171,7 +173,7 @@ import Layout from '../layouts/Layout.astro';
         <p class="section-lead">
           決済、金融、エンタメ、ブロックチェーンまで。
           業界を超えて、多くのプロジェクトに伴走してきました。
-          そこで培った知見と方法論が、次の挑戦の礎となります。
+          プロジェクト支援と自社の店舗経営で培った知見を、次の挑戦に活かしています。
         </p>
       </div>
 
@@ -235,6 +237,25 @@ import Layout from '../layouts/Layout.astro';
           </article>
         ))}
       </div>
+
+      <article class="owned-business" id="lakka" aria-labelledby="lakka-title" data-animate>
+        <div class="owned-business-identity">
+          <p class="owned-business-label">自社事業 / 東京・赤坂</p>
+          <p class="owned-business-name">Lakka<span>赤坂</span></p>
+          <p class="owned-business-type">ヘッドスパ＆イヤーエステ専門店</p>
+        </div>
+        <div class="owned-business-body">
+          <p class="section-eyebrow">OUR BUSINESS</p>
+          <h3 id="lakka-title">自ら事業を育てる経験を、<br/>お客様の事業へ。</h3>
+          <p>東京・赤坂で「Lakka」を運営。集客、接客、日々のオペレーション、収益管理に向き合いながら、自ら事業を育てています。</p>
+          <p>現場での意思決定と改善の経験を、事業開発・運営改善の支援に活かしています。</p>
+          <a href="https://beauty.hotpepper.jp/kr/slnH000614849/" target="_blank" rel="noopener noreferrer" class="owned-business-link">
+            Lakkaの店舗情報を見る
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3H3v10h10v-3M9 3h4v4M13 3L7 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="owned-business-link-note">HOT PEPPER Beauty・新しいタブで開きます</span>
+          </a>
+        </div>
+      </article>
     </div>
   </section>
 
@@ -796,6 +817,40 @@ import Layout from '../layouts/Layout.astro';
   .work-tags li {
     font-size: 0.72rem;
     color: var(--color-ink-muted);
+  }
+
+  /* 自社事業の紹介 */
+  .owned-business {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    margin-top: 48px;
+    border: 1px solid var(--color-border);
+    scroll-margin-top: 110px;
+  }
+  .owned-business-identity {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 48px;
+    background: var(--color-ink);
+    color: #ffffff;
+  }
+  .owned-business-label { font-size: 0.75rem; letter-spacing: 0.16em; color: #d2d2d7; }
+  .owned-business-name { font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 400; line-height: 1.1; letter-spacing: 0.04em; }
+  .owned-business-name span { display: block; margin-top: 18px; font-size: 0.85rem; letter-spacing: 0.3em; }
+  .owned-business-type { font-size: 0.85rem; line-height: 1.8; color: #d2d2d7; }
+  .owned-business-body { padding: 48px; background: #ffffff; }
+  .owned-business-body h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); line-height: 1.6; margin-bottom: 20px; }
+  .owned-business-body > p:not(.section-eyebrow) { font-size: 0.9rem; line-height: 2; color: var(--color-ink-soft); margin-bottom: 12px; }
+  .owned-business-link { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 16px; font-size: 0.85rem; font-weight: 700; }
+  .owned-business-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .owned-business-link:focus-visible { outline: 2px solid #3e86fa; outline-offset: 6px; }
+  .owned-business-link-note { flex-basis: 100%; font-size: 0.7rem; font-weight: 400; color: var(--color-ink-soft); }
+  @media (max-width: 760px) {
+    .owned-business { grid-template-columns: 1fr; margin-top: 32px; }
+    .owned-business-identity, .owned-business-body { padding: 32px 24px; }
   }
 
   /* ============= DIVISION ============= */
