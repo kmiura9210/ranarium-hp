@@ -16,6 +16,10 @@ npm run dev
 
 ## 開発サイトの更新
 
+Cloudflare Workers Buildsを接続済みです。devブランチへのpushで `npm run build:dev` → `npx wrangler deploy` が実行され、開発URLが自動更新されます。他ブランチのプレビュービルドは無効です。
+
+手動で更新する場合:
+
 ```sh
 git switch dev
 npm run deploy:dev
@@ -27,4 +31,4 @@ Cloudflareへのログインが必要です。`build:dev` が `wrangler.dev.json
 
 開発サイトで確認後、変更をレビューしてmainへ反映します。本番ビルドは通常の `npm run build` / `npm run deploy` を使います。開発Workerに本番ドメインのルートを追加しないでください。
 
-GitHub/Cloudflareの自動ビルドを追加する場合は、開発用Workerの対象をdevブランチ、ビルドコマンドを `npm run build:dev`、デプロイコマンドを `npx wrangler deploy` に設定します。
+Cloudflareの設定: 対象devブランチ、ビルド `npm run build:dev`、デプロイ `npx wrangler deploy`。開発サイトではセッションを使用しないため、セッションストアはメモリとし、本番のKVを共有しません。
