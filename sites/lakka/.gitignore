@@ -1,6 +1,0 @@
-node_modules/
-.wrangler/
-.env
-.env.*
-!.env.example
-__pycache__/
